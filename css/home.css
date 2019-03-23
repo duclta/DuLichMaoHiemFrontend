@@ -50,18 +50,19 @@ a{
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
+    z-index: 100;
 }
 .search-form-top{
     background: #2e2e2e;
-    opacity: 0.9;
     transform: translate(0%, 0%);
+    opacity: 0.95;
 }
 .form-search{
     margin: auto;
     width: 70%;
     padding: 0 15px;
     background: #2e2e2e;
-    opacity: 0.9;
+    opacity: 0.95;
 }
 .form-search-top{
     border-radius: 0;

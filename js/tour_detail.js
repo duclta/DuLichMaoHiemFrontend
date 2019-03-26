@@ -56,7 +56,7 @@ $(document).ready(function () {
             console.log(offsetTimelineItem);
             var timelineNav = $(".timeline-nav");
             console.log(timelineNav.width());
-            if (offsetTimelineItem > timelineNav.width() /2)
+            if (offsetTimelineItem > timelineNav.width() / 2)
                 timelineNav.animate({ scrollLeft: '+=300' }, 300, 'swing');
             else
                 timelineNav.animate({ scrollLeft: '-=300' }, 300, 'swing');
@@ -64,4 +64,31 @@ $(document).ready(function () {
         }
     });
 });
+
+$(document).ready(function () {
+    var imgs = $(".img-slideshow img");
+    var slideIndex = 0;
+    $(".btn-next-img").click(function () {
+        imgs.eq(slideIndex).fadeOut();
+        imgs.eq(slideIndex).addClass("d-none");
+        if (slideIndex == imgs.length - 1)
+            slideIndex = 0;
+        else
+            slideIndex++;
+        imgs.eq(slideIndex).fadeIn();
+        imgs.eq(slideIndex).removeClass("d-none");
+    });
+    $(".btn-pre-img").click(function () {
+        imgs.eq(slideIndex).fadeOut();
+        imgs.eq(slideIndex).addClass("d-none");
+        if (slideIndex == 0)
+            slideIndex = imgs.length - 1;
+        else
+            slideIndex--;
+        imgs.eq(slideIndex).fadeIn();
+        imgs.eq(slideIndex).removeClass("d-none");
+    });
+});
+
+
 

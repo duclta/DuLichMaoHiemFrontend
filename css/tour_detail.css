@@ -215,6 +215,52 @@
                 }
                 /*time line end*/
             /*tour itinerary end*/
+            /*image demo*/
+            .img-wrapper .col-lg-8{
+                position: relative;
+            }
+            .img-demo{
+                margin-bottom: 30px;
+            }
+            .img-slideshow{
+                white-space: nowrap;
+                height: 400px;
+            }
+            .img-slideshow img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .img-info{
+                height: 400px;
+                background-color: #2e2e2e;
+                overflow-y: scroll;
+            }
+            .img-info .item{
+                display: flex;
+                margin-bottom: 5px;
+                background: #1d1d1d;
+                align-items: center;
+                cursor: pointer;
+            }
+            .img-info .item .img-title{
+                width: 100%;
+                height: 100%;
+                text-align: center;
+            }
+            .img-info .item img{
+                height: 80px;
+                object-fit: cover;
+            }   
+            .btn-for-slide{
+                padding: 15px;
+            }
+            .btn-pre-img, .btn-next-img{
+                color: #000000;
+                opacity: 0.9;
+                cursor: pointer;
+            }
+            /*image demo end*/
             /*tour booking*/
             .single-tour-booking{
                 padding: 10px 20px 20px 20px;
@@ -230,4 +276,22 @@
             }
             /*tour booking end*/
     /*tab panes end*/
-/*tour body end/*
+/*tour body end*/
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }

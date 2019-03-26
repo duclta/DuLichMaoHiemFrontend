@@ -256,17 +256,20 @@ a{
 .tour-time{
     font-size: 12px;
 }
-.btn-for-tours{
+.btn-for-slide{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -150%);
     height: 0;
     display: flex;
     width: 100%;
     justify-content: space-between;
     opacity: 0.8;
     font-size: 45px;
+}
+.btn-pre-slide, .btn-next-slide{
+    cursor: pointer;
 }
 .tour-price{
     font-size: 17px;

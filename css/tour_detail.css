@@ -251,7 +251,10 @@
             .img-info .item img{
                 height: 80px;
                 object-fit: cover;
-            }   
+            }
+            .img-info .active{
+                border: solid 2px #00a3e4;
+            }
             .btn-for-slide{
                 padding: 15px;
             }

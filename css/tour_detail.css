@@ -264,18 +264,73 @@
                 cursor: pointer;
             }
             /*image demo end*/
-            /*tour booking*/
-            .single-tour-booking{
-                padding: 10px 20px 20px 20px;
-                background-color: #ffffff;
-                border-top: solid 5px #00a3e4;
-                box-shadow: 0 2px 1px #999999;
+            /*tour reviews*/
+            .reviews-box{
+                background-color: #2e2e2e;
+                padding: 20px;
+                margin-bottom: 10px;
             }
-            .single-tour-booking .title{
-                margin-bottom: 15px;
+            .review-box-score{
+                height: 100%;
+                padding: 30px;
+            }
+            .review-box-score *{
                 text-align: center;
-                color: #23b0e7;
-                border-bottom: solid 1px #d3d3d3;
+                padding: 10px;
+            }
+            .review-score{
+                font-size: 60px;
+                line-height: 55px;
+                color: #00b7ff;
+            }
+            .review-score-text{
+                color: #ffffff;
+                font-size: 25px;
+            }
+            .review-sumary .item{
+                padding: 5px;
+            }
+            .comment-item{
+                background-color: #2e2e2e;
+                padding: 15px;
+                margin-bottom: 5px;
+            }
+            .comment-item-head{
+                display: flex;
+                align-items: center;
+            }
+            .comment-item-head .media-left{
+                font-size: 50px;
+            }
+            .comment-item-head .media-body h4{
+                font-size: 20px;
+            }
+            .comment-item-head .media-body .date{
+                font-size: 13px;
+            }
+            .comment-item-body .content{
+                padding: 10px;
+            }
+            .write-review{
+                padding: 15px;
+                background-color: #2e2e2e;
+            }
+            /*tour reviews end*/
+            /*tour booking*/
+            .select-wrapper{
+                display: flex;
+                align-items: center;
+                background-color: #2e2e2e;
+            }
+            .select-wrapper .btn-select{
+                padding: 5px 10px;
+                cursor: pointer;
+            }
+            .select-wrapper .form-control{
+                background: none !important;
+                text-align: center;
+                color: #cccccc;
+                border: none;
             }
             /*tour booking end*/
     /*tab panes end*/

@@ -21,11 +21,11 @@ $(document).ready(function () {
         else {
             timeLineNavItem.removeClass("active");
             $(this).addClass("active");
-            var offsetTimelineItem = $(this).offset().left - 70;
+            var offsetTimelineItem = $(this).offset().left;
             console.log(offsetTimelineItem);
             var timelineNav = $(".timeline-nav");
             console.log($(body).width());
-            if (offsetTimelineItem >= $(body).width()*3/4)
+            if (offsetTimelineItem >= $(body).width()*4/5)
                 timelineNav.animate({ scrollLeft: '+=100' }, 300, 'swing');
                 if (offsetTimelineItem <= $(body).width()*1/4)
                 timelineNav.animate({ scrollLeft: '-=100' }, 300, 'swing');

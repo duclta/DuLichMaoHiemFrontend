@@ -10,57 +10,25 @@ $(window).scroll(function () {
 
 $(document).ready(function () {
     var item = $(".tour-itinerary").find(".item");
-    item.each(function (index) {
-        var header = $(this).find(".header");
-        header.click(function () {
-            var body = $(this).parent().find(".body");
-            if (body.hasClass("d-none")) {
-                body.removeClass("d-none");
-            } else {
-                body.addClass("d-none");
-            }
-            var timeLineNavItem = $(".timeline-nav-item");
-
-            if (timeLineNavItem.eq(index).hasClass("active"))
-                timeLineNavItem.eq(index).removeClass("active");
-            else
-                timeLineNavItem.eq(index).addClass("active");
-        });
-    });
-});
-
-$(document).ready(function () {
-    var item = $(".tour-itinerary").find(".item");
     var timeLineNavItem = $(".timeline-nav-item");
     timeLineNavItem.click(function (e) {
-        var body = item.eq($(this).index()).find(".body");
-        if (body.hasClass("d-none")) {
-            body.removeClass("d-none");
-        } else {
-            body.addClass("d-none");
-        }
-
+        var body = item.eq($(this).index());
+        item.addClass("d-none");
+        body.removeClass("d-none");
         if ($(this).hasClass("active")) {
-            $(this).removeClass("active");
             e.preventDefault();
         }
         else {
+            timeLineNavItem.removeClass("active");
             $(this).addClass("active");
-            var offsetClick = $('#' + 'item-' + $(this).index()).offset().top;
-            e.preventDefault();
-            $('html, body').animate({
-                'scrollTop': offsetClick - 53
-            }, 300);
-
-            var offsetTimelineItem = $(this).offset().left;
+            var offsetTimelineItem = $(this).offset().left - 70;
             console.log(offsetTimelineItem);
             var timelineNav = $(".timeline-nav");
-            console.log(timelineNav.width());
-            if (offsetTimelineItem > timelineNav.width() / 2)
-                timelineNav.animate({ scrollLeft: '+=300' }, 300, 'swing');
-            else
-                timelineNav.animate({ scrollLeft: '-=300' }, 300, 'swing');
-
+            console.log($(body).width());
+            if (offsetTimelineItem >= $(body).width()*3/4)
+                timelineNav.animate({ scrollLeft: '+=100' }, 300, 'swing');
+                if (offsetTimelineItem <= $(body).width()*1/4)
+                timelineNav.animate({ scrollLeft: '-=100' }, 300, 'swing');
         }
     });
 });
@@ -145,5 +113,25 @@ $(document).ready(function () {
         var value = item.val();
         value++;
         item.val(value);
+    });
+});
+
+$(document).ready(function(){
+    var flag = true;
+    var btnModeDes = $(".btn-more-des");
+    btnModeDes.click(function(){
+        var des = $(".tour-overview .description");
+        var h = $(".tour-overview .description p").height();
+        var pGradient = $(".p-gradient");
+        if(flag){
+            des.css("height", h);
+            pGradient.addClass("d-none");
+            flag = false;
+        }
+        else{
+            des.css("height", "200px");
+            pGradient.removeClass("d-none");
+            flag = true;
+        }
     });
 });

@@ -11,12 +11,12 @@
     <!-- Open Graph Meta-->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Vali Admin">
-    <meta property="og:title" content="Add tour - Team14.com">
+    <meta property="og:title" content="Add post - Team14.com">
     <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
     <meta property="og:description"
         content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-    <title>Add tour - Team14.com</title>
+    <title>Add post - Team14.com</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -130,11 +130,11 @@
             <li><a class="app-menu__item" href="dashboard.html"><i class="app-menu__icon fa fa-dashboard"></i><span
                         class="app-menu__label">Dashboard</span></a></li>
             <li></li>
-            <li class="treeview is-expanded"><a class="app-menu__item" href="" data-toggle="treeview"><i
+            <li class="treeview"><a class="app-menu__item" href="" data-toggle="treeview"><i
                         class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label"> Quản lý tours</span><i
                         class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a class="treeview-item active" href="add_tour.html"><i class="icon fa fa-plus"></i> Thêm
+                    <li><a class="treeview-item" href="add_tour.html"><i class="icon fa fa-plus"></i> Thêm
                             tour</a></li>
                     <li><a class="treeview-item" href="list_tours.html"><i class="icon fa fa-list"></i> Danh sách
                             tours</a>
@@ -143,11 +143,12 @@
             </li>
             <li><a class="app-menu__item" href="list_tickets.html"><i class="app-menu__icon fa fa-ticket"></i><span
                         class="app-menu__label">Quản lý vé</span></a></li>
-            <li class="treeview"><a class="app-menu__item" href="" data-toggle="treeview"><i
+            <li class="treeview is-expanded"><a class="app-menu__item" href="" data-toggle="treeview"><i
                         class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label"> Quản lý bài đăng</span><i
                         class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a class="treeview-item" href="add_post.html"><i class="icon fa fa-plus"></i> Thêm bài đăng</a>
+                    <li><a class="treeview-item active" href="add_post.html"><i class="icon fa fa-plus"></i> Thêm bài
+                            đăng</a>
                     </li>
                     <li><a class="treeview-item" href="list_posts.html"><i class="icon fa fa-list"></i> Danh sách bài
                             đăng</a>
@@ -161,7 +162,7 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-dashboard"></i> Thêm tour</h1>
+                <h1><i class="fa fa-dashboard"></i> Thêm bài đăng</h1>
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -180,15 +181,6 @@
                                         <input class="form-control" id="inputID" type="text" readonly="" value="154721">
                                     </fieldset>
                                 </div>
-                                <div class="form-group">
-                                    <label for="inputName">Tên tour</label>
-                                    <input class="form-control" id="inputName" type="text" placeholder="Nhập tên tour">
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputOverview">Giới thiệu</label>
-                                    <textarea class="form-control" id="inputOverview" rows="6"
-                                        placeholder="Giới thiệu về tour"></textarea>
-                                </div>
                                 <fieldset class="form-group">
                                     <a href="javascript:void(0)" onclick="$('#pro-image').click()">Chọn ảnh</a>
                                     <input type="file" id="pro-image" name="pro-image" style="display: none;"
@@ -198,107 +190,30 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-lg-4 offset-lg-1">
+                        <div class="col-lg-6">
                             <form>
                                 <div class="form-group">
-                                    <fieldset>
-                                        <label class="control-label" for="inputSize">Số lượng</label>
-                                        <input class="form-control" id="inputSize" type="text"
-                                            placeholder="Nhập số lượng">
-                                    </fieldset>
+                                    <label for="inputName">Tên bài đăng</label>
+                                    <input class="form-control" id="inputName" type="text"
+                                        placeholder="Nhập tên bài đăng">
                                 </div>
                                 <div class="form-group">
-                                    <fieldset>
-                                        <label class="control-label" for="inputPrice">Giá</label>
-                                        <input class="form-control" id="inputPrice" type="text" placeholder="Nhập giá">
-                                    </fieldset>
-                                </div>
-                                <div class="form-group">
-                                    <label for="selectKind">Thể loại</label>
-                                    <select class="form-control" id="selectKind">
-                                        <option>None</option>
-                                        <option>Leo núi</option>
-                                        <option>Lặn</option>
-                                        <option>Cưỡi voi</option>
-                                        <option>Nhảy dù</option>
-                                        <option>Khám phá hang động</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <fieldset>
-                                        <label class="control-label" for="inputKind">Thể loại mới</label>
-                                        <input class="form-control" id="inputKind" type="text"
-                                            placeholder="Nhập thể loại mới">
-                                    </fieldset>
-                                </div>
-                                <div class="form-group">
-                                    <fieldset>
-                                        <label class="control-label" for="inputStartDate">Ngày bắt đầu</label>
-                                        <input class="form-control datepicker" id="inputStartDate" type="date">
-                                    </fieldset>
-                                </div>
-                                <div class="form-group">
-                                    <fieldset>
-                                        <label class="control-label" for="inputEndDate">Ngày kết thúc</label>
-                                        <input class="form-control datepicker" id="inputEndDate" type="date">
-                                    </fieldset>
+                                    <label for="inputContent">Nội dung</label>
+
+                                    <textarea class="form-control" id="inputContent" rows="10"
+                                        aria-describedby="contentHelp" placeholder="Nhập nội dung"></textarea>
+                                    <small class="form-text text-muted" id="contentHelp">*Nhập (img) để chèn hình ảnh vào
+                                        nội dung</small>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <form>
-                        <h3>Lịch trình</h3>
-                        <div class="list-lich-trinh">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <fieldset>
-                                                    <label class="control-label" for="inputNgay1">Ngày</label>
-                                                    <input class="form-control" id="inputNgay1" type="text"
-                                                        placeholder="Ngày thứ mấy">
-                                                </fieldset>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label for="inputTitle1">Tiêu đề</label>
-                                                <input class="form-control" id="inputTitle1" type="text"
-                                                    placeholder="Nhập tiêu đề">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <label class="control-label">Chọn ảnh</label>
-                                                <input class="form-control" type="file" id="img1">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="inputOverview1">Nội dung</label>
-                                        <textarea class="form-control" id="inputOverview1" rows="5"
-                                            placeholder="Giới thiệu về tour"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-12 text-right">
-                                <button class="btn btn-info" id="addLichTrinh" type="button"
-                                    onclick=themLichTrinh()>Thêm lịch
-                                    trình</button>
-                            </div>
-                        </div>
-                    </form>
                     <div class="tile-footer">
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </main>
     <!-- Essential javascripts for application to work-->
@@ -324,11 +239,6 @@
     </script>
     <!--Upload image && Them lich trinh-->
     <script type="text/javascript">
-        var i = 1;
-        function themLichTrinh() {
-            i++;
-            $(".list-lich-trinh").append('<hr><div class="row"><div class="col-lg-6"><div class="row"><div class="col-lg-6"><div class="form-group"><fieldset><label class="control-label" for="inputNgay' + i + '">Ngày</label><input class="form-control" id="inputNgay' + i + '" type="text"placeholder="Ngày thứ mấy"></fieldset ></div ></div ><div class="col-lg-6"><div class="form-group"><label for="inputTitle' + i + '">Tiêu đề</label><input class="form-control" id="inputTitle' + i + '" type="text"placeholder="Nhập tiêu đề"></div></div><div class="col-lg-12"><div class="form-group"><label class="control-label">Chọn ảnh</label><input class="form-control"  type="file" id="img' + i + '""></div></div></div></div><div class="col-lg-6"><div class="form-group"><label for="inputOverview' + i + '">Nội dung</label><textarea class="form-control" id="inputOverview' + i + '" rows="5"placeholder="Giới thiệu về tour"></textarea></div></div></div >')
-        }
         //upload img
         $(document).ready(function () {
             document.getElementById('pro-image').addEventListener('change', readImage, false);

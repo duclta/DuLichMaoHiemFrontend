@@ -11,12 +11,12 @@
     <!-- Open Graph Meta-->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Vali Admin">
-    <meta property="og:title" content="Edit ticket - Team14.com">
+    <meta property="og:title" content="Add thể loại - Team14.com">
     <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
     <meta property="og:description"
         content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-    <title>Edit ticket - Team14.com</title>
+    <title>Add thể loại - Team14.com</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -141,8 +141,8 @@
                     </li>
                 </ul>
             </li>
-            <li><a class="app-menu__item active" href="list_tickets.html"><i
-                        class="app-menu__icon fa fa-ticket"></i><span class="app-menu__label">Quản lý vé</span></a></li>
+            <li><a class="app-menu__item" href="list_tickets.html"><i class="app-menu__icon fa fa-ticket"></i><span
+                        class="app-menu__label">Quản lý vé</span></a></li>
             <li class="treeview"><a class="app-menu__item" href="" data-toggle="treeview"><i
                         class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label"> Quản lý bài đăng</span><i
                         class="treeview-indicator fa fa-angle-right"></i></a>
@@ -154,11 +154,11 @@
                     </li>
                 </ul>
             </li>
-            <li class="treeview"><a class="app-menu__item" href="" data-toggle="treeview"><i
+            <li class="treeview is-expanded"><a class="app-menu__item" href="" data-toggle="treeview"><i
                         class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label"> Quản lý thể loại</span><i
                         class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a class="treeview-item" href="add_theloai.html"><i class="icon fa fa-plus"></i> Thêm thể
+                    <li><a class="treeview-item active" href="add_theloai.html"><i class="icon fa fa-plus"></i> Thêm thể
                             loại</a></li>
                     <li><a class="treeview-item" href="list_theloai.html"><i class="icon fa fa-list"></i> Danh sách thể
                             loại</a>
@@ -172,7 +172,7 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-dashboard"></i> Chỉnh sửa vé</h1>
+                <h1><i class="fa fa-dashboard"></i> Thêm thể loại</h1>
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -192,62 +192,18 @@
                                     </fieldset>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputName">Tên khách hàng</label>
-                                    <input class="form-control" id="inputName" type="text"
-                                        placeholder="Nhập tên khách hàng">
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPhone">Số điện thoại</label>
-                                    <input class="form-control" id="inputPhone" type="text"
-                                        placeholder="Nhập số điện thoại">
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputEmail">Email</label>
-                                    <input class="form-control" id="inputEmail" type="text" placeholder="Nhập email">
+                                    <label for="inputName">Tên thể loại</label>
+                                    <input class="form-control" id="inputName" type="text" placeholder="Nhập tên thể loại">
                                 </div>
                             </form>
+                            
                         </div>
-                        <div class="col-lg-6">
-                            <form>
-                                <div class="form-group">
-                                    <div class="form-group">
-                                        <fieldset>
-                                            <label class="control-label" for="inputSizeNL">Số lượng người lớn</label>
-                                            <input class="form-control" id="inputSizeNL" type="text"
-                                                placeholder="Nhập số lượng người lớn">
-                                        </fieldset>
-                                    </div>
-                                    <div class="form-group">
-                                        <fieldset>
-                                            <label class="control-label" for="inputSizeTE">Số lượng trẻ em</label>
-                                            <input class="form-control" id="inputSizeTE" type="text"
-                                                placeholder="Nhập số lượng trẻ em">
-                                        </fieldset>
-                                    </div>
-                                    <div class="form-group">
-                                        <fieldset>
-                                            <label class="control-label" for="inputIDTour">ID tour</label>
-                                            <input class="form-control" id="inputIDTour" type="text"
-                                                placeholder="ID tour" readonly="">
-                                        </fieldset>
-                                    </div>
-                                    <div class="form-group">
-                                        <fieldset>
-                                            <label class="control-label" for="inputNameTour">Tên tour</label>
-                                            <input class="form-control" id="inputNameTour" type="text"
-                                                placeholder="Tên tour" readonly="">
-                                        </fieldset>
-                                    </div>
-                            </form>
-                        </div>
+                        
+                    </div>
+                    <div class="tile-footer">
+                        <button class="btn btn-primary" type="submit">Submit</button>
                     </div>
                 </div>
-                <div class="tile-footer">
-                    <button class="btn btn-primary" type="submit">Submit</button>
-                </div>
-            </div>
-        </div>
-        </div>
     </main>
     <!-- Essential javascripts for application to work-->
     <script src="js/jquery-3.2.1.min.js"></script>
@@ -268,6 +224,56 @@
             })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
             ga('create', 'UA-72504830-1', 'auto');
             ga('send', 'pageview');
+        }
+    </script>
+    <!--Upload image && Them lich trinh-->
+    <script type="text/javascript">
+        var i = 1;
+        function themLichTrinh() {
+            i++;
+            $(".list-lich-trinh").append('<hr><div class="row"><div class="col-lg-6"><div class="row"><div class="col-lg-6"><div class="form-group"><fieldset><label class="control-label" for="inputNgay' + i + '">Ngày</label><input class="form-control" id="inputNgay' + i + '" type="text"placeholder="Ngày thứ mấy"></fieldset ></div ></div ><div class="col-lg-6"><div class="form-group"><label for="inputTitle' + i + '">Tiêu đề</label><input class="form-control" id="inputTitle' + i + '" type="text"placeholder="Nhập tiêu đề"></div></div><div class="col-lg-12"><div class="form-group"><label class="control-label">Chọn ảnh</label><input class="form-control"  type="file" id="img' + i + '""></div></div></div></div><div class="col-lg-6"><div class="form-group"><label for="inputOverview' + i + '">Nội dung</label><textarea class="form-control" id="inputOverview' + i + '" rows="5"placeholder="Giới thiệu về tour"></textarea></div></div></div >')
+        }
+        //upload img
+        $(document).ready(function () {
+            document.getElementById('pro-image').addEventListener('change', readImage, false);
+
+            $(".preview-images-zone").sortable();
+
+            $(document).on('click', '.image-cancel', function () {
+                let no = $(this).data('no');
+                $(".preview-image.preview-show-" + no).remove();
+            });
+        });
+
+        var num = 4;
+        function readImage() {
+            if (window.File && window.FileList && window.FileReader) {
+                var files = event.target.files; //FileList object
+                var output = $(".preview-images-zone");
+
+                for (let i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    if (!file.type.match('image')) continue;
+
+                    var picReader = new FileReader();
+
+                    picReader.addEventListener('load', function (event) {
+                        var picFile = event.target;
+                        var html = '<div class="preview-image preview-show-' + num + '">' +
+                            '<div class="image-cancel" data-no="' + num + '">x</div>' +
+                            '<div class="image-zone"><img id="pro-img-' + num + '" src="' + picFile.result + '"></div>' +
+                            '</div>';
+
+                        output.append(html);
+                        num = num + 1;
+                    });
+
+                    picReader.readAsDataURL(file);
+                }
+                $("#pro-image").val('');
+            } else {
+                console.log('Browser not support');
+            }
         }
     </script>
 </body>

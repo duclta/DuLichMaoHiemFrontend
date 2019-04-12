@@ -333,7 +333,7 @@
     border: solid 2px #00a3e4;
 }
 
-.btn-for-slide {
+.img-demo .btn-for-slide{
     padding: 15px;
 }
 
@@ -433,6 +433,12 @@
 }
 
 /*tour booking end*/
+
+/*tours sugesstion*/
+.tour-sugesstion{
+    margin-bottom: 30px;
+}
+/*tours sugesstion on*/
 
 /*tab panes end*/
 

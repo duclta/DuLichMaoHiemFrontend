@@ -135,3 +135,15 @@ $(document).ready(function(){
         }
     });
 });
+
+$(document).ready(function(){
+    var hienCo = $(".hien-co").text();
+    var size = $(".group-size").text();
+    console.log(hienCo);
+    console.log(size);
+    if(hienCo==size){
+        var link = $(".link-tham-gia");
+        link.addClass("disabled");
+        link.text("TOUR ĐÃ FULL");
+    }
+});

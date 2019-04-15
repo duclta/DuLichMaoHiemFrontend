@@ -202,7 +202,7 @@
                                 </div>
                                 <fieldset class="form-group">
                                     <a href="javascript:void(0)" onclick="$('#pro-image').click()">Chọn ảnh</a>
-                                    <input type="file" id="pro-image" name="pro-image" style="display: none;"
+                                    <input type="file" id="pro-image" name="pro-image"
                                         class="form-control" multiple>
                                 </fieldset>
                                 <div class="preview-images-zone">
@@ -288,11 +288,11 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 text-left">
-                                    <button class="btn btn-danger btn-xoa-lich-trinh" type="button"
-                                        onclick=xoaLichTrinh()>Xóa lịch
+                                    <button class="btn btn-danger btn-xoa-lich-trinh" type="button">Xóa lịch
                                         trình</button>
                                 </div>
                             </div>
+                            <input type="hidden" name="soLuongLichTrinh" id="soLuongLichTrinh" value="1">
                         </div>
 
                         <div class="row">
@@ -336,14 +336,16 @@
         var i = 1;
         function themLichTrinh() {
             i++;
-            $(".list-lich-trinh").append('<div class="row lich-trinh pb-3"><div class="col-lg-6"><div class="row"><div class="col-lg-6"><div class="form-group"><fieldset><label class="control-label" for="inputNgay' + i + '">Ngày</label><input class="form-control" id="inputNgay' + i + '" type="text"placeholder="Ngày thứ mấy"></fieldset ></div ></div ><div class="col-lg-6"><div class="form-group"><label for="inputTitle' + i + '">Tiêu đề</label><input class="form-control" id="inputTitle' + i + '" type="text"placeholder="Nhập tiêu đề"></div></div><div class="col-lg-12"><div class="form-group"><label class="control-label">Chọn ảnh</label><input class="form-control"  type="file" id="img' + i + '""></div></div></div></div><div class="col-lg-6"><div class="form-group"><label for="inputOverview' + i + '">Nội dung</label><textarea class="form-control" id="inputOverview' + i + '" rows="5"placeholder="Giới thiệu về tour"></textarea></div></div><div class="col-lg-12 text-left"><button class="btn btn-danger btn-xoa-lich-trinh" type="button" onclick=xoaLichTrinh()>Xóa lịchtrình</button></div></div></div>')
+            $(".list-lich-trinh").append('<div class="row lich-trinh pb-3"><div class="col-lg-6"><div class="row"><div class="col-lg-6"><div class="form-group"><fieldset><label class="control-label" for="inputNgay' + i + '">Ngày</label><input class="form-control" id="inputNgay' + i + '" type="text"placeholder="Ngày thứ mấy"></fieldset ></div ></div ><div class="col-lg-6"><div class="form-group"><label for="inputTitle' + i + '">Tiêu đề</label><input class="form-control" id="inputTitle' + i + '" type="text"placeholder="Nhập tiêu đề"></div></div><div class="col-lg-12"><div class="form-group"><label class="control-label">Chọn ảnh</label><input class="form-control"  type="file" id="img' + i + '""></div></div></div></div><div class="col-lg-6"><div class="form-group"><label for="inputOverview' + i + '">Nội dung</label><textarea class="form-control" id="inputOverview' + i + '" rows="5"placeholder="Giới thiệu về tour"></textarea></div></div><div class="col-lg-12 text-left"><button class="btn btn-danger btn-xoa-lich-trinh" type="button">Xóa lịch trình</button></div></div></div>')
             xoaLichTrinh();
+            var count = parseInt($('#soLuongLichTrinh').val()) + 1;
+            $('#soLuongLichTrinh').val(count);
+            console.log($('#soLuongLichTrinh').val());
         }
         function xoaLichTrinh() {
-            $(".lich-trinh").each(function () {
-                $(".btn-xoa-lich-trinh").click(function () {
-                    $(this).parent().parent().remove();
-                });
+            var btn = $(".btn-xoa-lich-trinh")
+            btn.eq(btn.length -1).click(function(){
+                $(this).parent().parent().remove();
             });
         }
 
@@ -357,7 +359,10 @@
 
             $(document).on('click', '.image-cancel', function () {
                 let no = $(this).data('no');
+                console.log($(this).index());
                 $(".preview-image.preview-show-" + no).remove();
+                var listFile = document.getElementById('pro-image').files;
+                console.log(document.getElementById('pro-image').files)
             });
         });
 
@@ -379,18 +384,35 @@
                             '<div class="image-cancel" data-no="' + num + '">x</div>' +
                             '<div class="image-zone"><img id="pro-img-' + num + '" src="' + picFile.result + '"></div>' +
                             '</div>';
-
                         output.append(html);
                         num = num + 1;
                     });
-
                     picReader.readAsDataURL(file);
                 }
-                $("#pro-image").val('');
+                
             } else {
                 console.log('Browser not support');
             }
         }
+
+        $(document).ready(function () {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+            today = yyyy + '-' + mm + '-' + dd;
+            document.getElementById("inputStartDate").value = today;
+            document.getElementById("inputEndDate").value = today;
+        });
+
     </script>
 </body>
 

@@ -1,0 +1,67 @@
+/*search*/
+
+.header-image img {
+    object-fit: cover;
+    width: 100%;
+    height: 500px;
+}
+
+.search-form-title {
+    text-align: left;
+}
+
+/*search end*/
+
+/*header end*/
+
+/*tours-result*/
+
+.tours-result-top {
+    padding: 10px 0;
+}
+
+.tours-result-top .title {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/*top filter*/
+
+.top-filter {
+    display: flex;
+    padding: 10px;
+    border-left: solid 5px #3184ff;
+    background-color: #2e2e2e;
+    justify-content: space-between;
+}
+
+.top-filter .title {
+    margin: 0;
+    margin-right: 15px;
+}
+
+.filter-left {
+    display: flex;
+    align-items: center;
+}
+
+.top-filter select {
+    border: none !important;
+    color: #cccccc;
+    padding: 5px 0;
+    padding-left: 5px !important;
+    margin-right: 15px;
+    background-color: #1e1e1e;
+    border-radius: 5px !important;
+}
+
+/*top filter end*/
+
+/*tours result content*/
+.tours-result-content {
+    padding: 10px 0;
+}
+.tour-item{
+    margin: 0 -2px 30px -2px;
+}
+/*tours result content end*/

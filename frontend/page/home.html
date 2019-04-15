@@ -81,59 +81,53 @@
                     </div>
                     <div class="search-form">
                         <h2 class="search-form-title">Mạo hiểm cùng chúng tôi</h2>
-                        <form action="#" method="GET" class="form-search dropdown">
+                        <form action="#" method="GET" class="form-search">
                             <div class="row">
                                 <div class="search-item search-option-1 col-lg-3">
-                                    <div class="content-show content-show-big" id="dropdown-destination"
-                                        data-toggle="dropdown" aria-expanded="false">
+                                    <div class="content-show content-show-big">
                                         <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
                                         <div class="content">
                                             <label>Điểm đến</label>
-                                            <div class="render">Bạn muốn đến đâu?</div>
+                                            <select id="diemDen" class="select-menu">
+                                                <option>Động phong nha</option>
+                                                <option>Núi Phú Sỹ</option>
+                                                <option>Biển Đà Nẵng</option>
+                                            </select>
                                         </div>
-                                    </div>
-                                    <div class="dropdown-menu" aria-labelledby="dropdown-destination">
-                                        <a class="dropdown-item" href="#">Leo núi</a>
-                                        <a class="dropdown-item" href="#">Lặn</a>
-                                        <a class="dropdown-item" href="#">Lướt sóng</a>
-                                        <a class="dropdown-item" href="#">Nhảy dù</a>
-                                        <a class="dropdown-item" href="#">Cưỡi voi</a>
                                     </div>
                                 </div>
                                 <div class="search-item search-option-1 col-lg-3">
-                                    <div class="content-show content-show-big" id="dropdown-while"
-                                        data-toggle="dropdown" aria-expanded="false">
+                                    <div class="content-show content-show-big">
                                         <div class="icon"><i class="fas fa-hiking"></i></div>
                                         <div class="content">
                                             <label>Thể loại</label>
-                                            <div class="render">Mạo hiểm theo cách nào?</div>
+                                            <select id="theLoai" class="select-menu">
+                                                <option>Leo núi</option>
+                                                <option>Lặn</option>
+                                                <option>Lướt sóng</option>
+                                                <option>Nhảy dù</option>
+                                                <option>Cưỡi voi</option>
+                                            </select>
                                         </div>
-                                    </div>
-                                    <div class="dropdown-menu" aria-labelledby="dropdown-while">
-                                        <a class="dropdown-item" href="#">Leo núi</a>
-                                        <a class="dropdown-item" href="#">Lặn</a>
-                                        <a class="dropdown-item" href="#">Lướt sóng</a>
-                                        <a class="dropdown-item" href="#">Nhảy dù</a>
-                                        <a class="dropdown-item" href="#">Cưỡi voi</a>
                                     </div>
                                 </div>
                                 <div class="search-item search-option-2 col-lg-4">
-                                    <div class="content-show content-show-big" id="dropdown-advenced"
-                                        data-toggle="dropdown" aria-expanded="false">
+                                    <div class="content-show content-show-big">
                                         <div class="icon"><i class="fas fa-clock"></i></div>
                                         <div class="content">
                                             <label>Thời lượng</label>
-                                            <div class="render">Chuyến đi dài bao lâu?</div>
+                                            <select id="thoiLuong" class="select-menu">
+                                                <option>1 - 2 ngày</option>
+                                                <option>3 - 5 ngày</option>
+                                                <option>5 - 7 ngày</option>
+                                                <option>Trên 1 tuần</option>
+                                            </select>
                                         </div>
-                                    </div>
-                                    <div class="dropdown-menu" aria-labelledby="dropdown-advenced">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
                                     </div>
                                 </div>
                                 <div class="search-button search-option-3 col-lg-2">
-                                    <button class="btn btn-primary"><i class="fas fa-search-location"></i></button>
+                                    <button type="submit" class="btn btn-primary"><i
+                                            class="fas fa-search-location"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -441,7 +435,7 @@
                             </div>
                         </div>
                     </div>
-                </div>  
+                </div>
                 <!--tours hot end-->
 
                 <!--tours populer-->

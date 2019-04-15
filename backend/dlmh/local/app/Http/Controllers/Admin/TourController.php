@@ -68,13 +68,15 @@ class TourController extends Controller
             $req['img'.$value]->storeAs('images/tour/schedule',$imageName);
         }
 
-        return back()->with(['flag'=>'success','message'=>'Thêm tour mới thành công']);;
+        return back()->with(['flag'=>'success','message'=>'Thêm tour mới thành công']);
     }
 
     public function getEditTour($id)
     {
         $data['tour'] = Tour::find($id);
         $data['catelist'] = Category::all();
+        $data['schedulelist'] = Schedule::where('schedule_tour',$id)->get();
+        //  dd($data['schedulelist']);
         return view('admin.edit_tour', $data);
     }
 

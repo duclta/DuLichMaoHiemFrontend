@@ -1,5 +1,5 @@
-@extends('admin.master')
-@section('title','Add tour')
+@extends('admin.layout.master')
+@section('title','Edit tour')
 @section('main')
 <main class="app-content">
     <div class="app-title">
@@ -74,48 +74,57 @@
                     <div>
                         <h3>Lịch trình</h3>
                         <div class="list-lich-trinh">
+                            @php
+                                $index = 0;
+                            @endphp
+                            @foreach ($schedulelist as $item)
                             <div class="row lich-trinh pb-3">
-                                <div class="col-lg-6">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <fieldset>
-                                                    <label class="control-label" for="inputNgay1">Ngày</label>
-                                                    <input required class="form-control" name="day1" id="inputNgay1" type="number" min="1" value="1">
-                                                </fieldset>
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <fieldset>
+                                                        <label class="control-label" for="inputNgay{{$index}}">Ngày</label>
+                                                        <input required class="form-control" name="day{{$index}}" id="inputNgay{{$index}}" type="number" min="1" value="{{$item->schedule_day}}">
+                                                    </fieldset>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label for="inputTitle1">Tiêu đề</label>
-                                                <input required class="form-control" name="title1" id="inputTitle1" type="text"
-                                                    placeholder="Nhập tiêu đề">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="inputTitle{{$index}}">Tiêu đề</label>
+                                                    <input required class="form-control" name="title{{$index}}" id="inputTitle{{$index}}" type="text"
+                                                        placeholder="Nhập tiêu đề" value="{{$item->schedule_title}}">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <label class="control-label">Chọn ảnh</label>
-                                                <input required class="form-control" type="file" name="img1" id="img1">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Chọn ảnh</label>
+                                                    <input required class="form-control" type="file" name="img{{$index}}" id="img{{$index}}">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="inputOverview1">Nội dung</label>
-                                        <textarea required class="form-control" id="inputOverview1" rows="5"
-                                            placeholder="Giới thiệu về lịch trình" name="content1"></textarea>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="inputOverview{{$index}}">Nội dung</label>
+                                            <textarea required class="form-control" id="inputOverview{{$index}}" rows="5"
+                                                placeholder="Giới thiệu về lịch trình" name="content{{$index}}">{{$item->schedule_content}}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 text-left">
+                                        <button class="btn btn-danger btn-xoa-lich-trinh" type="button"
+                                            onclick=xoaLichTrinh()>Xóa lịch trình</button>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 text-left">
-                                    <button class="btn btn-danger btn-xoa-lich-trinh" type="button"
-                                        onclick=xoaLichTrinh()>Xóa lịch trình</button>
-                                </div>
-                            </div>
+                                @php
+                                    $index++;
+                                @endphp
+                            @endforeach
                         </div>
                         <div class="row">
                             <div class="col-lg-12 text-right">
                                 <button class="btn btn-info" id="addLichTrinh" type="button" onclick=themLichTrinh()>Thêm lịch trình</button>
+                                <input hidden id="countSchedule" type="number" value="{{$index}}">
                             </div>
                         </div>
                     </div>
@@ -130,8 +139,12 @@
     </div>
 </main>
 <!--Upload image && Them va Xoa lich trinh-->
-<script type="text/javascript">
-    var i = 1;
+
+<script type='text/javascript'>
+    var x = document.getElementById("countSchedule").getAttribute("value");
+    //console.log(x);
+    let i = x;
+
     
     function themLichTrinh() {
         i++;
@@ -231,24 +244,6 @@
         }
     }
 
-    $(document).ready(function() {
-        $('#avatar').click(function(){
-            console.log("đã click");
-            $('#poster').click();
-        });
-    });
-    function changeImg(input){
-        //Nếu như tồn thuộc tính file, đồng nghĩa người dùng đã chọn file mới
-        if(input.files && input.files[0]){
-            var reader = new FileReader();
-            //Sự kiện file đã được load vào website
-            reader.onload = function(e){
-                //Thay đổi đường dẫn ảnh
-                $('#avatar').attr('src',e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
     $(document).ready(function () {
             var today = new Date();
             var dd = today.getDate();

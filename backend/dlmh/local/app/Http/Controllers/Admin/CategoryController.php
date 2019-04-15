@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Http\Requests\AddCateRequest;
 use App\Http\Requests\EditCateRequest;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -22,11 +23,15 @@ class CategoryController extends Controller
     }
     public function postAddCate(AddCateRequest $req)
     {
+        $filename = $req->poster->getClientOriginalName();
         $category = new Category;
-        $category->name = $req->name;
-        $category->slug = str_slug($req->name);
+        $category->cate_name = $req->name;
+        $category->cate_slug = str_slug($req->name);
+        $category->cate_poster = $filename;
+        $category->cate_featured = $req->featured;
         $category->save();
-        return redirect()->intended('admin/category');;
+        $req->poster->storeAs('images/category/poster',$filename);
+        return back()->with(['flag'=>'success','message'=>'Thêm thể loại mới thành công']);
     }
 
     public function getEditCate($id)
@@ -35,12 +40,22 @@ class CategoryController extends Controller
         return view('admin.edit_category', $data);
     }
 
-    public function postEditCate(AddCateRequest $req, $id)
+    public function postEditCate(EditCateRequest $req, $id)
     {
+        $filename = $req->poster->getClientOriginalName();
         $category = Category::find($id);
-        $category->name = $req->name;
-        $category->slug = str_slug($req->name);
+        $category->cate_name = $req->name;
+        $category->cate_slug = str_slug($req->name);
+        $category->cate_poster = $filename;
+        $category->cate_featured = $req->featured;
         $category->save();
+        $req->poster->storeAs('images/category/poster',$filename);
+
+        // $myFile = '/path/to/my/file.txt';
+        // if (! Storage::exists($myFile)) {
+        //     // do something
+        // }
+
         return redirect()->intended('admin/category');
     }
 

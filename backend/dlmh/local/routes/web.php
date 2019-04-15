@@ -48,7 +48,28 @@ Route::group(['namespace' => 'Admin'], function () {
             Route::get('/delete/{id}','TourController@getDeleteTour');
         });
         
-        Route::get('/comment', 'CommentController@getComment');
+        Route::group(['prefix' => 'comment'], function () {
+            Route::get('/', 'CommentController@getComment');
+            Route::get('/delete/{id}', 'CommentController@getDeleteComment');
+        });
+
+        Route::group(['prefix' => 'ticket'], function () {
+            Route::get('/', 'TicketController@getTicket');
+            Route::get('/delete/{id}', 'TicketController@getDeleteTicket');
+        });
+
+        Route::group(['prefix' => 'post'], function () {
+            Route::get('/','PostController@getTour');
+
+            Route::get('/add','PostController@getAddPost');
+            Route::post('/add','PostController@postAddPost');
+
+            Route::get('/edit/{id}','TourController@getEditPost');
+            Route::post('/edit/{id}','TourController@postEditPost');
+            
+            Route::get('/delete/{id}','TourController@getDeletePost');
+        });
+
     });
     Route::get('logout','HomeController@getLogout');
 });

@@ -13,7 +13,7 @@ class EditCateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class EditCateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'unique:category,name'.$this->segment(4).',id'
+            'name' => 'unique:category,cate_name,'.$this->segment(4).',cate_id',
+            'poster' => 'image'
         ];
     }
 

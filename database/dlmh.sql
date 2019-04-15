@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2019 at 12:42 PM
+-- Generation Time: Apr 15, 2019 at 05:15 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -32,6 +32,8 @@ CREATE TABLE `category` (
   `cate_id` bigint(20) UNSIGNED NOT NULL,
   `cate_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `cate_slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `cate_poster` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `cate_featured` tinyint(4) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
@@ -40,12 +42,12 @@ CREATE TABLE `category` (
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`cate_id`, `cate_name`, `cate_slug`, `created_at`, `updated_at`) VALUES
-(1, 'Leo núi', 'leo-nui', '2019-04-14 02:49:04', '2019-04-14 02:49:04'),
-(2, 'Lặn', 'lan', '2019-04-14 02:49:47', '2019-04-14 02:49:47'),
-(3, 'Nhảy dù', 'nhay-du', '2019-04-14 02:49:59', '2019-04-14 02:49:59'),
-(4, 'Khám phá hang động', 'kham-pha-hang-dong', '2019-04-14 02:50:09', '2019-04-14 02:50:09'),
-(5, 'Cưỡi voi', 'cuoi-voi', '2019-04-14 02:50:19', '2019-04-14 02:50:19');
+INSERT INTO `category` (`cate_id`, `cate_name`, `cate_slug`, `cate_poster`, `cate_featured`, `created_at`, `updated_at`) VALUES
+(1, 'Leo núi', 'leo-nui', 'leo-nui.jpg', 1, '2019-04-14 02:49:04', '2019-04-15 02:51:13'),
+(2, 'Lặn', 'lan', 'tour-lan-bien-ngam-san-ho-nha-trang1.jpg', 1, '2019-04-14 02:49:47', '2019-04-15 02:51:25'),
+(3, 'Nhảy dù', 'nhay-du', 'NhảyDùSkydive-GreatOceanRoadSummer19.jpg', 1, '2019-04-14 02:49:59', '2019-04-15 02:51:37'),
+(4, 'Khám phá hang động', 'kham-pha-hang-dong', 'Transfer-Hue-To-Phong-Nha-By-Private-Car.jpg', 1, '2019-04-14 02:50:09', '2019-04-15 02:51:51'),
+(5, 'Cưỡi voi', 'cuoi-voi', 'dlcv_wsbc.jpg', 1, '2019-04-14 02:50:19', '2019-04-15 02:52:02');
 
 -- --------------------------------------------------------
 
@@ -171,7 +173,10 @@ INSERT INTO `schedule` (`schedule_id`, `schedule_title`, `schedule_content`, `sc
 (1, 'đi chợ spa', 'hế lô', 4, 'ERD CUA HANG.png', 1, '2019-04-14 09:04:25', '2019-04-14 09:04:25'),
 (2, 'đi ngủ', 'xin chào', 4, 'ERD CUA HANG-Page-2.png', 2, '2019-04-14 09:04:25', '2019-04-14 09:04:25'),
 (3, '21312', '1212212131232', 5, 'ERD CUA HANG.png', 1, '2019-04-14 09:21:16', '2019-04-14 09:21:16'),
-(4, '21321', '1232', 5, 'ERD CUA HANG-Page-4.png', 2, '2019-04-14 09:21:16', '2019-04-14 09:21:16');
+(4, '21321', '1232', 5, 'ERD CUA HANG-Page-4.png', 2, '2019-04-14 09:21:16', '2019-04-14 09:21:16'),
+(5, '1212312', '123', 6, 'ERD CUA HANG.png', 1, '2019-04-14 17:34:08', '2019-04-14 17:34:08'),
+(6, '64', '456\r\n456', 6, 'ERD CUA HANG-Page-2.png', 2, '2019-04-14 17:34:08', '2019-04-14 17:34:08'),
+(7, '654654645', '123123123\r\n4', 6, 'ERD CUA HANG-Page-4.png', 3, '2019-04-14 17:34:08', '2019-04-14 17:34:08');
 
 -- --------------------------------------------------------
 
@@ -211,6 +216,7 @@ CREATE TABLE `tour` (
   `tour_price` double NOT NULL,
   `tour_poster` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `tour_user_post` bigint(10) UNSIGNED NOT NULL,
+  `tour_featured` tinyint(4) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
@@ -219,9 +225,10 @@ CREATE TABLE `tour` (
 -- Dumping data for table `tour`
 --
 
-INSERT INTO `tour` (`tour_id`, `tour_name`, `tour_slug`, `tour_cate`, `tour_number`, `tour_number_of_blank`, `tour_departure_date`, `tour_return_date`, `tour_introduction`, `tour_price`, `tour_poster`, `tour_user_post`, `created_at`, `updated_at`) VALUES
-(4, 'Leo núi Gia Lào', 'leo-nui-gia-lao', 1, 20, NULL, '2019-04-14', '2019-04-14', 'lên đỉnh', 1000, 'ERD CUA HANG-Page-3.png', 1, '2019-04-14 09:04:25', '2019-04-14 09:04:25'),
-(5, 'doublfeel', 'doublfeel', 2, 122, NULL, '2019-04-14', '2019-04-14', 'dfsasdfsdfsd', 122312, 'ERD CUA HANG-Page-3.png', 1, '2019-04-14 09:21:16', '2019-04-14 09:21:16');
+INSERT INTO `tour` (`tour_id`, `tour_name`, `tour_slug`, `tour_cate`, `tour_number`, `tour_number_of_blank`, `tour_departure_date`, `tour_return_date`, `tour_introduction`, `tour_price`, `tour_poster`, `tour_user_post`, `tour_featured`, `created_at`, `updated_at`) VALUES
+(4, 'Leo núi Gia Lào', 'leo-nui-gia-lao', 1, 20, NULL, '2019-04-14', '2019-04-14', 'lên đỉnh', 1000, 'ERD CUA HANG-Page-3.png', 1, 0, '2019-04-14 09:04:25', '2019-04-14 09:04:25'),
+(5, 'doublfeel', 'doublfeel', 2, 122, NULL, '2019-04-14', '2019-04-14', 'dfsasdfsdfsd', 122312, 'ERD CUA HANG-Page-3.png', 1, 0, '2019-04-14 09:21:16', '2019-04-14 09:21:16'),
+(6, 'Lặm', 'lam', 3, 321, NULL, '2019-04-15', '2019-04-15', 'dfasdfds', 12212, 'ERD CUA HANG-Page-2.png', 1, 0, '2019-04-14 17:34:08', '2019-04-14 17:34:08');
 
 -- --------------------------------------------------------
 
@@ -336,7 +343,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `cate_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cate_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -372,7 +379,7 @@ ALTER TABLE `place`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `schedule_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `schedule_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `ticket`
@@ -384,7 +391,7 @@ ALTER TABLE `ticket`
 -- AUTO_INCREMENT for table `tour`
 --
 ALTER TABLE `tour`
-  MODIFY `tour_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `tour_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`

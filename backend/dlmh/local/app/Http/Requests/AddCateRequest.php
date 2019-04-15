@@ -24,7 +24,8 @@ class AddCateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'unique:category,name'
+            'name' => 'unique:category,cate_name',
+            'poster' => 'image'
         ];
     }
 

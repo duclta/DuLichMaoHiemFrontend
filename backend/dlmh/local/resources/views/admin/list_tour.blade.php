@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('admin.layout.master')
 @section('title','List tours')
 @section('main')
 <main class="app-content">
@@ -54,4 +54,5 @@
     </div>
   </div>
 </main>
+@include('admin.layout.datatablejs')
 @endsection

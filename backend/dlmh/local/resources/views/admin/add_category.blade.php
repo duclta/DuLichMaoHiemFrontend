@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('admin.layout.master')
 @section('title','Add Category')
 @section('main')
 <main class="app-content">
@@ -17,10 +17,20 @@
                 <div class="row">
                     <div class="col-lg-6">
                         @include('errors.note')
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="name">Tên thể loại</label>
-                                <input class="form-control" id="name" name="name" type="text" placeholder="Nhập tên thể loại mới">
+                                <input required class="form-control" id="name" name="name" type="text" placeholder="Nhập tên thể loại mới">
+                            </div>
+                            <div class="form-group" >
+                                <label>Ảnh bìa</label>
+                                <input required id="poster" type="file" name="poster" class="form-control hidden" onchange="changeImg(this)">
+                                <img id="avatar" class="thumbnail" height="300px" src="img/new_seo-10-512.png">
+                            </div>
+                            <div class="form-group" >
+                                <label>Thể loại nổi bật</label><br>
+                                Có: <input type="radio" name="featured" value="1">
+                                Không: <input type="radio" checked name="featured" value="0">
                             </div>
                             <div class="tile-footer">
                                 <button class="btn btn-primary" name="submit" type="submit">Thêm mới</button>
@@ -32,6 +42,6 @@
 
             </div>
         </div>
-    </div>>
+    </div>
 </main>
 @endsection

@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('admin.layout.master')
 @section('title','List thể loại')
 @section('main')
 <main class="app-content">
@@ -20,6 +20,8 @@
               <tr>
                 <th>ID</th>
                 <th>Tên thể loại</th>
+                <th>Poster</th>
+                <th>Nổi bật</th>
                 <th>Công cụ</th>
               </tr>
             </thead>
@@ -28,6 +30,16 @@
               <tr>
                   <td>{{$item->cate_id}}</td>
                   <td>{{$item->cate_name}}</td>
+                  <td>
+                      <img height="150px" src="{{asset('local/storage/app/images/category/poster/'.$item->cate_poster)}}" class="thumbnail" alt="Không tìm thấy hình ảnh">
+                  </td>
+                  <td>
+                      @if ($item->cate_featured == true)
+                          Có
+                      @else
+                          Không
+                      @endif
+                  </td>
                   <td class="p-1 text-center">
                     <div class="btn-group">
                       <a class="btn btn-primary" href="{{asset('admin/category/edit/'.$item->cate_id)}}"><span class="fa fa-lg fa-edit"></span>Sửa</a>
@@ -43,4 +55,5 @@
     </div>
   </div>
 </main>
+@include('admin.layout.datatablejs')
 @endsection

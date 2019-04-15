@@ -1,5 +1,8 @@
 /*search*/
 
+.header-image{
+    width: 100%;
+}
 .header-image img {
     object-fit: cover;
     width: 100%;
@@ -63,5 +66,19 @@
 }
 .tour-item{
     margin: 0 -2px 30px -2px;
+}
+.page-nav .page-link{
+    background-color: #2e2e2e !important;
+    border: none;
+    color: #cccccc !important;
+    cursor: pointer;
+}
+
+.page-nav .active .page-link{
+    background-color: #1e1e1e !important;
+}
+
+.page-nav .disabled .page-link{
+    color: #7e7e7e !important;
 }
 /*tours result content end*/

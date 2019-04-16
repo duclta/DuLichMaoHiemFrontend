@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2019 at 05:18 AM
+-- Generation Time: Apr 16, 2019 at 10:52 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -58,6 +58,7 @@ INSERT INTO `category` (`cate_id`, `cate_name`, `cate_slug`, `cate_poster`, `cat
 CREATE TABLE `comment` (
   `cmt_id` int(11) UNSIGNED NOT NULL,
   `cmt_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `cmt_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `cmt_content` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `cmt_score` int(11) NOT NULL,
   `cmt_tour` int(11) UNSIGNED NOT NULL,
@@ -202,6 +203,13 @@ CREATE TABLE `ticket` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
+-- Dumping data for table `ticket`
+--
+
+INSERT INTO `ticket` (`ticket_id`, `ticket_cus_name`, `ticket_cus_phone`, `ticket_cus_email`, `ticket_number_of_adults`, `ticket_number_of_children`, `ticket_status`, `ticket_tour`, `created_at`, `updated_at`) VALUES
+(2, 'doublfeel', '0123456789', 'thanglong2098@gmail.com', 2, 1, 123456789, 9, '2019-04-16 08:28:38', '2019-04-16 08:28:38');
+
+--
 -- Triggers `ticket`
 --
 DELIMITER $$
@@ -213,7 +221,7 @@ CREATE TRIGGER `delete_number_checkout_tour` AFTER DELETE ON `ticket` FOR EACH R
     
     SET total = quantity_purchased - (OLD.ticket_number_of_adults + OLD.ticket_number_of_children);
     
-    UPDATE tour SET tour.tour_number_of_blank = total WHERE tour.tour_id = OLD.ticket_tour;
+    UPDATE tour SET tour.tour_quantity_purchased = total WHERE tour.tour_id = OLD.ticket_tour;
 END
 $$
 DELIMITER ;
@@ -227,7 +235,7 @@ CREATE TRIGGER `insert_number_checkout_tour` AFTER INSERT ON `ticket` FOR EACH R
     SET total = quantity_purchased +
     (NEW.ticket_number_of_adults + NEW.ticket_number_of_children);
     
-    UPDATE tour SET tour.tour_number_of_blank = total WHERE tour.tour_id = NEW.ticket_tour;
+    UPDATE tour SET tour.tour_quantity_purchased = total WHERE tour.tour_id = NEW.ticket_tour;
 END
 $$
 DELIMITER ;
@@ -276,7 +284,23 @@ CREATE TABLE `tour` (
 --
 
 INSERT INTO `tour` (`tour_id`, `tour_name`, `tour_slug`, `tour_cate`, `tour_quantity`, `tour_quantity_purchased`, `tour_departure_date`, `tour_return_date`, `tour_introduction`, `tour_price`, `tour_poster`, `tour_user_post`, `tour_new`, `tour_featured`, `created_at`, `updated_at`) VALUES
-(9, 'Leo núi Gia Lào', 'leo-nui-gia-lao', 1, 20, 0, '2019-04-16', '2019-04-17', 'đi chơi vui vẻ', 99999, 'leo-nui.jpg', 1, 1, 1, '2019-04-15 14:40:04', '2019-04-15 14:40:04');
+(9, 'Leo núi Gia Lào', 'leo-nui-gia-lao', 1, 20, 3, '2019-04-16', '2019-04-17', 'đi chơi vui vẻ', 99999, 'leo-nui.jpg', 1, 1, 1, '2019-04-15 14:40:04', '2019-04-15 14:40:04');
+
+--
+-- Triggers `tour`
+--
+DELIMITER $$
+CREATE TRIGGER `update_tour_featured` BEFORE UPDATE ON `tour` FOR EACH ROW BEGIN
+	DECLARE percent FLOAT;
+    SET percent = NEW.tour_quantity / NEW.tour_quantity_purchased;
+    IF percent > 0.5 THEN
+    	SET NEW.tour_featured = true;
+    ELSE
+    	SET NEW.tour_featured = false;
+    END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -433,7 +457,7 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `ticket_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ticket_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tour`

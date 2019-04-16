@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Tour;
 use App\Models\Category;
 use App\Models\Schedule;
+use App\Models\PictureTour;
 use App\Http\Requests\AddTourRequest;
 use DB;
 use Auth;
@@ -29,20 +30,35 @@ class TourController extends Controller
     {
         $data = $req->request;
 
-        $filename = $req->poster->getClientOriginalName();
+        // if(count($_FILES['pictour'])) {
+        //     // foreach ($_FILES['uploads']['filesToUpload'] as $file) {
+                
+        //     //     //do your upload stuff here
+        //     //     echo $file;
+                
+        //     // }
+        //     dd($_FILES);
+        // }
+
+
+        $poster = $req->pictour[0];
+
+        $filePosterName = $poster->getClientOriginalName();
+
         $tour = new Tour;
         $tour->tour_name = $req->name;
         $tour->tour_slug = str_slug($req->name);
         $tour->tour_cate = $req->cate;
-        $tour->tour_number = $req->number;
+        $tour->tour_quantity = $req->quantity;
         $tour->tour_departure_date = $req->departure_date;
         $tour->tour_return_date = $req->return_date;
         $tour->tour_introduction = $req->introduction;
         $tour->tour_price = $req->price;
-        $tour->tour_poster = $filename;
+        $tour->tour_poster = $filePosterName;
         $tour->tour_user_post = Auth::user()->id;
+        $tour->tour_new = true;
         $tour->save();
-        $req->poster->storeAs('images/tour/poster',$filename);
+        $poster->storeAs('images/tour/poster',$filePosterName);
 
         $index = array();
         $temp = 0;
@@ -54,6 +70,15 @@ class TourController extends Controller
         }
 
         $tour = Tour::where('tour_name',$req->name)->first();
+
+        for ($i= 1; $i < count($req->pictour); $i++) { 
+            $picName = $req->pictour[$i]->getClientOriginalName();
+            $picTour = new PictureTour;
+            $picTour->pic_tour = $tour->tour_id;
+            $picTour->pic_name = $picName;
+            $picTour->save();
+            $req->pictour[$i]->storeAs('images/tour',$picName);
+        }
 
         foreach ($index as $value) {
             $imageName = $req['img'.$value]->getClientOriginalName();

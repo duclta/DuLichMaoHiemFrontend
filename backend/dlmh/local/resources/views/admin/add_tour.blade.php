@@ -26,17 +26,19 @@
                                 <label for="inputOverview">Giới thiệu</label>
                                 <textarea required class="form-control" name="introduction" id="inputOverview" rows="6" placeholder="Giới thiệu về tour"></textarea>
                             </div>
-                            <div class="form-group" >
-                                <label>Ảnh bìa</label>
-                                <input required id="poster" type="file" name="poster" class="form-control hidden" onchange="changeImg(this)">
-                                <img id="avatar" class="thumbnail" height="200px" src="img/new_seo-10-512.png">
+                            <fieldset class="form-group">
+                                <a href="javascript:void(0)" onclick="$('#pro_image').click()">Chọn ảnh</a>
+                                <input type="file" id="pro_image" name="pictour[]" style="display: none;"
+                                    class="form-control" accept="image/*" multiple="multiple">
+                            </fieldset>
+                            <div class="preview-images-zone">
                             </div>
                         </div>
                         <div class="col-lg-4 offset-lg-1">
                             <div class="form-group">
                                 <fieldset>
                                     <label class="control-label" for="inputSize">Số lượng</label>
-                                    <input required class="form-control" name="number" id="inputSize" type="number" min="1">
+                                    <input required class="form-control" name="quantity" id="inputSize" type="number" min="1">
                                 </fieldset>
                             </div>
                             <div class="form-group">
@@ -67,53 +69,53 @@
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <h3>Lịch trình</h3>
-                        <div class="list-lich-trinh">
-                            <div class="row lich-trinh pb-3">
-                                <div class="col-lg-6">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <fieldset>
-                                                    <label class="control-label" for="inputNgay1">Ngày</label>
-                                                    <input required class="form-control" name="day1" id="inputNgay1" type="number" min="1" value="1">
-                                                </fieldset>
+                    <div style="margin-top: 10px;">
+                            <h3>Lịch trình</h3>
+                            <div class="list-lich-trinh">
+                                <div class="row lich-trinh pb-3">
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <fieldset>
+                                                        <label class="control-label" for="inputNgay1">Ngày</label>
+                                                        <input required class="form-control" name="day1" id="inputNgay1" type="number" min="1" value="1">
+                                                    </fieldset>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label for="inputTitle1">Tiêu đề</label>
-                                                <input required class="form-control" name="title1" id="inputTitle1" type="text"
-                                                    placeholder="Nhập tiêu đề">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="inputTitle1">Tiêu đề</label>
+                                                    <input required class="form-control" name="title1" id="inputTitle1" type="text"
+                                                        placeholder="Nhập tiêu đề">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <label class="control-label">Chọn ảnh</label>
-                                                <input required class="form-control" type="file" name="img1" id="img1">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Chọn ảnh</label>
+                                                    <input required class="form-control" type="file" name="img1" id="img1">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="inputOverview1">Nội dung</label>
-                                        <textarea required class="form-control" id="inputOverview1" rows="5"
-                                            placeholder="Giới thiệu về lịch trình" name="content1"></textarea>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="inputOverview1">Nội dung</label>
+                                            <textarea required class="form-control" id="inputOverview1" rows="5"
+                                                placeholder="Giới thiệu về lịch trình" name="content1"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 text-left">
+                                        <button class="btn btn-danger btn-xoa-lich-trinh" type="button"
+                                            onclick=xoaLichTrinh()>Xóa lịch trình</button>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 text-left">
-                                    <button class="btn btn-danger btn-xoa-lich-trinh" type="button"
-                                        onclick=xoaLichTrinh()>Xóa lịch trình</button>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 text-right">
+                                    <button class="btn btn-info" id="addLichTrinh" type="button" onclick=themLichTrinh()>Thêm lịch trình</button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 text-right">
-                                <button class="btn btn-info" id="addLichTrinh" type="button" onclick=themLichTrinh()>Thêm lịch trình</button>
-                            </div>
-                        </div>
                     </div>
                     <div class="tile-footer">
                         <button class="btn btn-primary" name="submit" value="Thêm" type="submit">Thêm</button>
@@ -125,7 +127,9 @@
         </div>
     </div>
 </main>
-<!--Upload image && Them va Xoa lich trinh-->
+@endsection
+@section('scriptjs')
+    <!--Upload image && Them va Xoa lich trinh-->
 <script type="text/javascript">
     var i = 1;
     
@@ -178,7 +182,7 @@
     function xoaLichTrinh() {
         var btn = $(".btn-xoa-lich-trinh")
         btn.eq(btn.length -1).click(function(){
-            $(this).parent().parent().remove();
+            $(this).parent().parent().parent().parent().parent().remove();
         });
     }
 
@@ -186,7 +190,7 @@
 
     //upload img
     $(document).ready(function () {
-        document.getElementById('pro-image').addEventListener('change', readImage, false);
+        document.getElementById('pro_image').addEventListener('change', readImage, false);
 
         $(".preview-images-zone").sortable();
 
@@ -221,7 +225,13 @@
 
                 picReader.readAsDataURL(file);
             }
-            $("#pro-image").val('');
+            // let temp = $("#pro_image").files;
+            // console.log(temp);
+            // var names = [];
+            // for (var i = 0; i < $("#pro_image").get(0).files.length; ++i) {
+            //     names.push($("#pro_image").get(0).files[i].name);
+            // }
+            // console.log(names);
         } else {
             console.log('Browser not support');
         }

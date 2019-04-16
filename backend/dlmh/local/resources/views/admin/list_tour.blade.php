@@ -25,6 +25,8 @@
                 <th>Còn trống</th>
                 <th>Ngày bắt đầu</th>
                 <th>Ngày kết thúc</th>
+                <th>Mới</th>
+                <th>Nổi Bật</th>
                 <th>Công cụ</th>
               </tr>
             </thead>
@@ -38,6 +40,14 @@
                   <td>{{$item->tour_number_of_blank}}</td>
                   <td>{{$item->tour_departure_date}}</td>
                   <td>{{$item->tour_return_date}}</td>
+                  <td>@if ($item->tour_new == true)
+                        <i class="fa fa-check fa-lg">
+                      @endif
+                  </td>
+                  <td>@if ($item->tour_featured == true)
+                        <i class="fa fa-check fa-lg">
+                      @endif
+                  </td>
                   <td class="p-1 text-center">
                     <div class="btn-group">
                       <a class="btn btn-primary" href="{{asset('admin/tour/edit/'.$item->tour_id)}}"><i class="fa fa-lg fa-edit"></i>Sửa</a>
@@ -46,7 +56,6 @@
                   </td>
                 </tr>
               @endforeach
-              
             </tbody>
           </table>
         </div>

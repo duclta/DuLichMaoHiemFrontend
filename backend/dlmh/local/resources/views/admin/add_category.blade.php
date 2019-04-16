@@ -24,13 +24,13 @@
                             </div>
                             <div class="form-group" >
                                 <label>Ảnh bìa</label>
-                                <input required id="poster" type="file" name="poster" class="form-control hidden" onchange="changeImg(this)">
-                                <img id="avatar" class="thumbnail" height="300px" src="img/new_seo-10-512.png">
+                                <input required id="poster" type="file" name="poster" class="form-control hidden poster" onchange="changeImg(this)" accept="image/*">
+                                <img id="avatar" class="thumbnail avatar" height="300px" src="img/new_seo-10-512.png">
                             </div>
                             <div class="form-group" >
                                 <label>Thể loại nổi bật</label><br>
-                                Có: <input type="radio" name="featured" value="1">
-                                Không: <input type="radio" checked name="featured" value="0">
+                                Có: <input type="radio" checked name="featured" value="1">
+                                Không: <input type="radio"  name="featured" value="0">
                             </div>
                             <div class="tile-footer">
                                 <button class="btn btn-primary" name="submit" type="submit">Thêm mới</button>

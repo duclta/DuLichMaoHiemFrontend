@@ -69,6 +69,11 @@
                                     <input required name="return_date" class="form-control datepicker" id="inputEndDate" type="date" value="{{$tour->tour_return_date}}">
                                 </fieldset>
                             </div>
+                            <div class="form-group" >
+                            <label>Tour mới</label><br>
+                                Có: <input type="radio" name="new" value="1" @if ($tour->tour_new == true) checked @endif>
+                                Không: <input type="radio" name="new" value="0"  @if ($tour->tour_new == false) checked @endif>
+                            </div>
                         </div>
                     </div>
                     <div>

@@ -35,9 +35,7 @@
                   </td>
                   <td>
                       @if ($item->cate_featured == true)
-                          Có
-                      @else
-                          Không
+                        <i class="fa fa-check fa-lg">
                       @endif
                   </td>
                   <td class="p-1 text-center">

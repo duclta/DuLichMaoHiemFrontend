@@ -1,4 +1,4 @@
-@extends('frontend.master')
+@extends('frontend.layout.master')
 @section('header-slideshow')
 <div class="header-slideshow">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

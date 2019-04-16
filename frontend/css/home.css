@@ -268,9 +268,9 @@ a{
     display: flex;
     justify-content: space-between;
 }
-.tour-star{
+/*.tour-star{
     color: #ffff00;
-}
+}*/
 .tour-time{
     font-size: 12px;
 }
@@ -433,3 +433,7 @@ a{
     box-shadow: 0px 0px 10px #202020;
 }
 /*animation end*/
+
+.yellow{
+    color: #eeff00;
+}

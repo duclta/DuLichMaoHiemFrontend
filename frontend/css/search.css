@@ -32,7 +32,8 @@
 
 .top-filter {
     display: flex;
-    padding: 10px;
+    flex-wrap: wrap;
+    padding: 5px 10px;
     border-left: solid 5px #3184ff;
     background-color: #2e2e2e;
     justify-content: space-between;
@@ -43,8 +44,9 @@
     margin-right: 15px;
 }
 
-.filter-left {
+.filter-left, .filter-right {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
 }
 
@@ -58,6 +60,22 @@
     border-radius: 5px !important;
 }
 
+#idSort{
+    margin-right: 0px;
+}
+@media only screen and (max-width: 767px){
+    .filter-left, .filter-right{
+        width: 100%;
+    }
+    .filter-left *, .filter-right *{
+        margin: 5px 0px;
+        width: 100%;
+    }
+    .top-filter select {
+        border: none !important;
+        margin-right: 0px;
+    }
+}
 /*top filter end*/
 
 /*tours result content*/
@@ -80,5 +98,8 @@
 
 .page-nav .disabled .page-link{
     color: #7e7e7e !important;
+}
+.filter-result{
+    color: #cccccc;
 }
 /*tours result content end*/

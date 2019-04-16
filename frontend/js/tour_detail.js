@@ -147,3 +147,19 @@ $(document).ready(function(){
         link.text("TOUR ĐÃ FULL");
     }
 });
+
+$(document).ready(function () {
+    var stars = $('.form-comment-wrapper .review-star').find('i');
+    stars.click(function () {
+        $('#id-score').val($(this).index() + 1);
+        console.log($('#id-score').val());
+        for (var i = 0; i <= 4; i++) {
+            if (i <= $(this).index()){
+                stars.eq(i).addClass('yellow');
+            }
+            else{
+                stars.eq(i).removeClass('yellow');
+            }
+        }
+    });
+});

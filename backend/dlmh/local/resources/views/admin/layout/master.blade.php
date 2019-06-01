@@ -25,8 +25,6 @@
   <!-- Font-icon css-->
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="js/jquery-3.2.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
@@ -67,9 +65,16 @@
           <li><a class="treeview-item" href="{{asset('admin/tour/add')}}"><i class="icon fa fa-plus"></i> Thêm tour</a></li>
         </ul>
       </li>
-      
       <li><a class="app-menu__item" href="{{asset('admin/ticket')}}"><i class="app-menu__icon fa fa-ticket"></i><span
-            class="app-menu__label">Quản lý vé</span></a></li>
+        class="app-menu__label">Quản lý vé</span></a></li>
+        <li class="treeview"><a class="app-menu__item" href="" data-toggle="treeview"><i
+          class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label"> Quản lý Trips</span><i
+          class="treeview-indicator fa fa-angle-right"></i></a>
+        <ul class="treeview-menu">
+          <li><a class="treeview-item" href=""><i class="icon fa fa-list"></i> Danh sách trips</a></li>
+          <li><a class="treeview-item" href=""><i class="icon fa fa-plus"></i> Thêm trip</a></li>
+        </ul>
+      </li>
       <li class="treeview"><a class="app-menu__item" href="" data-toggle="treeview"><i
             class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label"> Quản lý bài đăng</span><i
             class="treeview-indicator fa fa-angle-right"></i></a>
@@ -78,6 +83,7 @@
           <li><a class="treeview-item" href="add_post.html"><i class="icon fa fa-plus"></i> Thêm bài đăng</a></li>
         </ul>
       </li>
+    
       <li><a class="app-menu__item" href="{{asset('admin/comment')}}"><i class="app-menu__icon fa fa-comment"></i><span
             class="app-menu__label">Bình luận</span></a></li>
     </ul>
@@ -103,6 +109,8 @@
     ga('send', 'pageview');
   }
 </script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 @yield('scriptjs')
 </body>
 

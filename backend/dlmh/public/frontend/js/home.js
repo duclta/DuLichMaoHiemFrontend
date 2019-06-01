@@ -46,3 +46,13 @@ $(document).ready(function(){
         slideWrapper.animate({scrollLeft: w}, 500, 'swing');
     });
 });
+
+$(document).ready(function () {
+    var tourStar = $('.tour-star');
+    tourStar.each(function(){
+        var stars = $(this).find('i');
+        for(var i = 0;i<=4-stars.length;i++){
+            $(this).append('<i class="fas fa-star"></i>')
+        }
+    });
+});

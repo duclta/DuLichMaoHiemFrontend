@@ -1,462 +1,392 @@
 @extends('frontend.layout.master')
+@section('add_css_and_script')
+<link rel="stylesheet" type="text/css" media="screen" href="css/search.css">
+@endsection
 @section('header-slideshow')
 <div class="header-slideshow">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                <img class="d-block w-100" src="https://lonelyplanetimages.imgix.net/copilot/images/interest/adventure-travel.jpg" alt="First slide">
+    <div class="header-image">
+        <img class="image-background"
+            src="http://image.laodong.com.vn/uploaded/ctvkhampha/2016_11_14/anh201xekl_vptw.jpg" alt="">
+    </div>
+    <div class="search-form">
+        <h2 class="search-form-title">Kết quả tìm kiếm</h2>
+        <form action="{{asset('search/')}}" role="search" method="GET" class="form-search">
+            <div class="row">
+                <div class="search-item search-option-1 col-lg-3">
+                    <div class="content-show content-show-big">
+                        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="content">
+                            <label>Điểm đến</label>
+                            <select id="diemDen" class="select-menu">
+                                <option>Động phong nha</option>
+                                <option>Núi Phú Sỹ</option>
+                                <option>Biển Đà Nẵng</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="carousel-item">
-                <img class="d-block w-100" src="http://kenhthoitiet.vn/wp-content/uploads/2018/08/hang-dong.jpg" alt="Second slide">
+                <div class="search-item search-option-1 col-lg-3">
+                    <div class="content-show content-show-big">
+                        <div class="icon"><i class="fas fa-hiking"></i></div>
+                        <div class="content">
+                            <label>Thể loại</label>
+                            <select name="cate" id="theLoai" class="select-menu">
+                                <option value="-1">Tất cả</option>
+                                @foreach ($catelist as $cate)
+                                    <option value="{{$cate->cate_id}}">{{$cate->cate_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="carousel-item">
-                <img class="d-block w-100" src="http://vn.lienhiepthanhresort.com/upload/images/kitesurfing1453343448.jpg" alt="Third slide">
+                <div class="search-item search-option-2 col-lg-4">
+                    <div class="content-show content-show-big">
+                        <div class="icon"><i class="fas fa-clock"></i></div>
+                        <div class="content">
+                            <label>Thời lượng</label>
+                            <select name="time" id="thoiLuong" class="select-menu">
+                                <option value="-1">Tất cả</option>
+                                <option value="1-2">1 - 2 ngày</option>
+                                <option value="3-5">3 - 5 ngày</option>
+                                <option value="5-7">5 - 7 ngày</option>
+                                <option value=">7">Trên 1 tuần</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-button search-option-3 col-lg-2">
+                    <button type="submit" class="btn btn-primary"><i
+                            class="fas fa-search-location"></i></button>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-        <div class="search-form">
-            <h2 class="search-form-title">Mạo hiểm cùng chúng tôi</h2>
-            <form action="#" method="GET" class="form-search dropdown">
-                <div class="row">  
-                    <div class="search-item search-option-1 col-lg-3">
-                        <div class="content-show content-show-big" id="dropdown-destination" data-toggle="dropdown" aria-expanded="false">
-                            <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div class="content">
-                                <label>Điểm đến</label>
-                                <div class="render">Bạn muốn đến đâu?</div>
-                            </div>
-                        </div>
-                        <div class="dropdown-menu" aria-labelledby="dropdown-destination">
-                            <a class="dropdown-item" href="#">Leo núi</a>
-                            <a class="dropdown-item" href="#">Lặn</a>
-                            <a class="dropdown-item" href="#">Lướt sóng</a>
-                            <a class="dropdown-item" href="#">Nhảy dù</a>
-                            <a class="dropdown-item" href="#">Cưỡi voi</a>
-                        </div>
-                    </div>
-                    <div class="search-item search-option-1 col-lg-3">
-                        <div class="content-show content-show-big" id="dropdown-while" data-toggle="dropdown" aria-expanded="false">
-                            <div class="icon"><i class="fas fa-hiking"></i></div>
-                            <div class="content">
-                                <label>Thể loại</label>
-                                <div class="render">Mạo hiểm theo cách nào?</div>
-                            </div>
-                        </div>
-                        <div class="dropdown-menu" aria-labelledby="dropdown-while">
-                            <a class="dropdown-item" href="#">Leo núi</a>
-                            <a class="dropdown-item" href="#">Lặn</a>
-                            <a class="dropdown-item" href="#">Lướt sóng</a>
-                            <a class="dropdown-item" href="#">Nhảy dù</a>
-                            <a class="dropdown-item" href="#">Cưỡi voi</a>
-                        </div>
-                    </div>
-                    <div class="search-item search-option-2 col-lg-4">
-                        <div class="content-show content-show-big" id="dropdown-advenced" data-toggle="dropdown" aria-expanded="false">
-                            <div class="icon"><i class="fas fa-clock"></i></div>
-                            <div class="content">
-                                <label>Thời lượng</label>
-                                <div class="render">Chuyến đi dài bao lâu?</div>
-                            </div>
-                        </div>
-                        <div class="dropdown-menu" aria-labelledby="dropdown-advenced">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                    <div class="search-button search-option-3 col-lg-2">
-                        <button class="btn btn-primary"><i class="fas fa-search-location"></i></button>
-                    </div>
-                </div>
-            </form>
-        </div>
+        </form>
     </div>
+</div>
 @endsection
 @section('main')
 <div class="container">
-        <div class="content-wrapper">
+    <div class="content-wrapper">
 
-            <!--introdution-->
-            <div class="introdution">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="intro-item">
-                            <div class="intro-img">
-                                <img src="https://saigon-travel.com/wp-content/uploads/2019/02/09-support.png" alt="Dịch vụ tiêu chuẩn">
-                            </div>
-                            <div class="intro-content">
-                                <h5>Dịch vụ tiêu chuẩn</h4>
-                                <div class="desc">Dịch Vụ Tiêu chuẩn, đảm bảo theo đúng thông tin yêu cầu</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="intro-item">
-                            <div class="intro-img">
-                                <img src="https://saigon-travel.com/wp-content/uploads/2019/02/12-customer-service.png" alt="Hậu đãi tuyệt vời">
-                            </div>
-                            <div class="intro-content">
-                                <h5>Hậu đãi tuyệt vời</h4>
-                                <div class="desc">Chính sách chăm sóc khách hàng tuyệt vời</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="intro-item">
-                            <div class="intro-img">
-                                <img src="https://saigon-travel.com/wp-content/uploads/2019/02/19-like.png" alt="Dịch vụ tiêu chuẩn">
-                            </div>
-                            <div class="intro-content">
-                                <h5>Dịch vụ tiêu chuẩn</h5>
-                                <div class="desc">Dịch Vụ Tiêu chuẩn, đảm bảo theo đúng thông tin yêu cầu</div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="tours-result-top">
+            <h2 class="title">Tìm thấy {{count($tours_search)}} tour</h2>
+            <div class="top-filter">
+                <div class="filter-left">
+                    <h5 class="title">Lọc theo</h5>
+                    <select name="price" id="idPrice">
+                        <option value="0">Giá</option>
+                        <option value="1">Dưới 5 triệu</option>
+                        <option value="2">Từ 5 - 10 triệu</option>
+                        <option value="3">Từ 10 - 15 triệu</option>
+                        <option value="4">Từ 15 - 20 triệu</option>
+                        <option value="5">Trên 20 triệu</option>
+                    </select>
+                    <select name="score" id="idScore">
+                        <option value="0">Đánh giá</option>
+                        <option value="5">5 star</option>
+                        <option value="4">4 star</option>
+                        <option value="3">3 star</option>
+                        <option value="2">2 star</option>
+                        <option value="1">1 star</option>
+                    </select>
+                    <button id="btn-filter" class="btn btn-dark bg-dark">Lọc</button>
+                </div>
+                <div class="filter-right">
+                    <!-- <select name="sort" id="idSort">
+                        <option value="0">Sắp xếp theo</option>
+                        <option value="1">Giá từ thấp đến cao</option>
+                        <option value="2">Giá từ cao đến thấp</option>
+                        <option value="3">Đánh giá từ thấp đến cao</option>
+                        <option value="4">Đánh giá từ cao đến thấp</option>
+                    </select> -->
                 </div>
             </div>
-            <!--introdution end-->
+        </div>
 
-            <!--popular activity-->
-            <div class="popular-activity">
-                <a href=""><h2 class="title">Hoạt động phổ biến</h2></a>
-                <div class="activity-wrapper">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-6">
-                            <div class="activity-item ani-box-shawdow">
-                                <a href="">
-                                    <div class="activity-img">
-                                        <img class="ani-img-zoom" src="http://quocviet.net/uploads/nts/thumb/leo-nui.jpg" alt="Leo núi">
-                                    </div>
-                                    <div class="activity-content">
-                                        <h4 class="title">Leo núi</h4>
-                                        <button class="btn btn-primary">15 tours</button>
-                                    </div>
+        <div class="tours-result-content">
+            <div class="tours-result-wrapper">
+                @foreach ($tours_search as $item)
+                    <div class="tour-item">
+                        <div class="tour-item-wrapper ani-box-shawdow">
+                            <div class="tour-header">
+                                <a href="{{asset('/detail/'.$item->tour_id.'/'.$item->tour_slug.'.html')}}">
+                                    <img width="273px;" height="217px;" class="ani-img-zoom" src="{{asset('local/storage/app/images/tour/poster/'.$item->tour_poster)}}" alt="ảnh tour">
                                 </a>
+                                <div class="tour-tag">{{$item->cate_name}}</div>
+                            </div>
+                            <div class="tour-content">
+                                <div class="tour-title">
+                                    <h5><a href="{{asset('/detail/'.$item->tour_id.'/'.$item->tour_slug.'.html')}}">{{$item->tour_name}}</a></h5>
+                                </div>
+                                <div class="tour-rate">
+                                    <span class="tour-star">
+                                        @if ($item->cmt_avg_score !== NULL)
+                                        @for ($i = 0; $i < $item->cmt_avg_score; $i++)
+                                            <i class="fas fa-star yellow"></i>
+                                        @endfor
+                                        @endif
+                                    </span>
+                                    <span class="tour-review">{{$item->cmt_count}} reviews</span>
+                                </div>
+                                <div class="tour-info">
+                                    <div class="tour-price">Giá từ <span class="price">{{number_format($item->tour_price,0,',','.')}}</span> VNĐ</div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="activity-item ani-box-shawdow">
-                                <a href="" >
-                                    <div class="activity-img">
-                                        <img class="ani-img-zoom" src="http://sanhoviet.vn/wp-content/uploads/2015/10/tour-lan-bien-ngam-san-ho-nha-trang1.jpg" alt="Lặn">
-                                    </div>
-                                    <div class="activity-content">
-                                        <h4 class="title">Lặn</h4>
-                                        <button class="btn btn-primary">12 tours</button>
-                                    </div>
-                                </a>
-                            </div>
+                    </div> 
+                @endforeach
+            </div>
+        </div>
+        <ul class="page-nav pagination justify-content-end"></ul>
+    </div>
+    <!--tours sugesstion-->
+    <div class="tours tours-sugesstion">
+        <a href="">
+            <h2 class="title">Có thể bạn sẽ thích</h2>
+        </a>
+        <div class="tours-wrapper">
+            @foreach ($tours_new as $item)
+                <div class="tour-item">
+                    <div class="tour-item-wrapper ani-box-shawdow">
+                        <div class="tour-header">
+                            <a href="{{asset('/detail/'.$item->tour_id.'/'.$item->tour_slug.'.html')}}">
+                                <img width="273px;" height="217px;" class="ani-img-zoom" src="{{asset('local/storage/app/images/tour/poster/'.$item->tour_poster)}}" alt="ảnh tour">
+                            </a>
+                            <div class="tour-tag">{{$item->cate_name}}</div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="activity-item ani-box-shawdow">
-                                <a href="" >
-                                    <div class="activity-img">
-                                        <img class="ani-img-zoom" src="http://image.sggp.org.vn/w1200/Uploaded/2019/chuwobj/2018_07_13/dlcv_wsbc.jpg" alt="Cưỡi voi">
-                                    </div>
-                                    <div class="activity-content">
-                                        <h4 class="title">Cưỡi voi</h4>
-                                        <button class="btn btn-primary">9 tours</button>
-                                    </div>
-                                </a>
+                        <div class="tour-content">
+                            <div class="tour-title">
+                                <h5><a href="{{asset('/detail/'.$item->tour_id.'/'.$item->tour_slug.'.html')}}">{{$item->tour_name}}</a></h5>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="activity-item ani-box-shawdow">
-                                <a href="" >
-                                    <div class="activity-img">
-                                        <img class="ani-img-zoom" src="https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_720,f_auto/w_80,x_15,y_15,g_south_west,l_klook_water/activities/sbka9x12nnekphoyworz/Nh%E1%BA%A3yD%C3%B9Skydive-GreatOceanRoadSummer19.jpg" alt="Nhảy dù">
-                                    </div>
-                                    <div class="activity-content">
-                                        <h4 class="title">Nhảy dù</h4>
-                                        <button class="btn btn-primary">5 tours</button>
-                                    </div>
-                                </a>
+                            <div class="tour-rate">
+                                <span class="tour-star">
+                                    @if ($item->cmt_avg_score !== NULL)
+                                    @for ($i = 0; $i < $item->cmt_avg_score; $i++)
+                                        <i class="fas fa-star yellow"></i>
+                                    @endfor
+                                    @endif
+                                </span>
+                                <span class="tour-review">{{$item->cmt_count}} reviews</span>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                            <div class="activity-item ani-box-shawdow">
-                                <a href="" >
-                                    <div class="activity-img">
-                                        <img class="ani-img-zoom" src="https://www.transfertohoian.com/wp-content/uploads/2017/07/Transfer-Hue-To-Phong-Nha-By-Private-Car.jpg" alt="Khám phá hang động">
-                                    </div>
-                                    <div class="activity-content">
-                                        <h4 class="title">Khám phá hang động</h4>
-                                        <button class="btn btn-primary">20 tours</button>
-                                    </div>
-                                </a>
+                            <div class="tour-info">
+                                <div class="tour-price">Giá từ <span class="price">{{number_format($item->tour_price,0,',','.')}}</span> VNĐ</div>
                             </div>
                         </div>
                     </div>
+                </div> 
+            @endforeach
+            <div class="btn-for-slide">
+                <div class="btn-pre-slide">
+                    <i class="fas fa-chevron-circle-left"></i>
+                </div>
+                <div class="btn-next-slide">
+                    <i class="fas fa-chevron-circle-right"></i>
                 </div>
             </div>
-            <!--popular activity end-->
-
-            <!--tours hot-->
-            <div class="tours tours-hot">
-                <a href=""><h2 class="title">Tour du lịch HOT</h2></a>
-                <div class="tours-wrapper">
-                    <div class="tour-item ani-box-shawdow">
-                        <div class="tour-header">
-                            <a href=""><img class="ani-img-zoom" src="https://saigon-travel.com/wp-content/uploads/2019/01/ali-nuredini-1133841-unsplash-680x500.jpg" alt=""></a>
-                            <div class="tour-tag">Leo núi</div>
-                        </div>
-                        <div class="tour-content">
-                            <div class="tour-title"><h5><a href="">Leo nóc nhà Liên Xô đầy thử thách</a></h5></div>
-                            <div class="tour-rate">
-                                <span class="tour-star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                <span class="tour-review">2 reviews</span>
-                            </div>
-                            <div class="tour-info">
-                                <div class="tour-price">Giá từ 3.500.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tour-item ani-box-shawdow">
-                        <div class="tour-header">
-                            <a href=""><img class="ani-img-zoom" src="https://saigon-travel.com/wp-content/uploads/2019/01/ali-nuredini-1133841-unsplash-680x500.jpg" alt=""></a>
-                            <div class="tour-tag">Leo núi</div>
-                        </div>
-                        <div class="tour-content">
-                            <div class="tour-title"><h5><a href="">Leo nóc nhà Liên Xô đầy thử thách</a></h5></div>
-                            <div class="tour-rate">
-                                <span class="tour-star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                <span class="tour-review">2 reviews</span>
-                            </div>
-                            <div class="tour-info">
-            
-                                <div class="tour-price">Giá từ 3.500.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tour-item ani-box-shawdow">
-                        <div class="tour-header">
-                            <a href=""><img class="ani-img-zoom" src="https://saigon-travel.com/wp-content/uploads/2019/01/ali-nuredini-1133841-unsplash-680x500.jpg" alt=""></a>
-                            <div class="tour-tag">Leo núi</div>
-                        </div>
-                        <div class="tour-content">
-                            <div class="tour-title"><h5><a href="">Leo nóc nhà Liên Xô đầy thử thách</a></h5></div>
-                            <div class="tour-rate">
-                                <span class="tour-star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                <span class="tour-review">2 reviews</span>
-                            </div>
-                            <div class="tour-info">
-            
-                                <div class="tour-price">Giá từ 3.500.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tour-item ani-box-shawdow">
-                        <div class="tour-header">
-                            <a href=""><img class="ani-img-zoom" src="https://saigon-travel.com/wp-content/uploads/2019/01/ali-nuredini-1133841-unsplash-680x500.jpg" alt=""></a>
-                            <div class="tour-tag">Leo núi</div>
-                        </div>
-                        <div class="tour-content">
-                            <div class="tour-title"><h5><a href="">Leo nóc nhà Liên Xô đầy thử thách</a></h5></div>
-                            <div class="tour-rate">
-                                <span class="tour-star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                <span class="tour-review">2 reviews</span>
-                            </div>
-                            <div class="tour-info">
-            
-                                <div class="tour-price">Giá từ 3.500.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tour-item ani-box-shawdow">
-                        <div class="tour-header">
-                            <a href=""><img class="ani-img-zoom" src="https://saigon-travel.com/wp-content/uploads/2019/01/ali-nuredini-1133841-unsplash-680x500.jpg" alt=""></a>
-                            <div class="tour-tag">Leo núi</div>
-                        </div>
-                        <div class="tour-content">
-                            <div class="tour-title"><h5><a href="">Leo nóc nhà Liên Xô đầy thử thách</a></h5></div>
-                            <div class="tour-rate">
-                                <span class="tour-star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                <span class="tour-review">2 reviews</span>
-                            </div>
-                            <div class="tour-info">
-            
-                                <div class="tour-price">Giá từ 3.500.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tour-item ani-box-shawdow">
-                        <div class="tour-header">
-                            <a href=""><img class="ani-img-zoom" src="https://saigon-travel.com/wp-content/uploads/2019/01/ali-nuredini-1133841-unsplash-680x500.jpg" alt=""></a>
-                            <div class="tour-tag">Leo núi</div>
-                        </div>
-                        <div class="tour-content">
-                            <div class="tour-title"><h5><a href="">Leo nóc nhà Liên Xô đầy thử thách</a></h5></div>
-                            <div class="tour-rate">
-                                <span class="tour-star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                <span class="tour-review">2 reviews</span>
-                            </div>
-                            <div class="tour-info">
-                                <div class="tour-price">Giá từ 3.500.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="btn-for-slide">
-                        <div class="btn-pre-slide">
-                            <i class="fas fa-chevron-circle-left"></i>
-                        </div>
-                        <div class="btn-next-slide">
-                            <i class="fas fa-chevron-circle-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--tours hot end-->
-
-            <!--tours populer-->
-            <div class="tours tours-popular">
-                <a href=""><h2 class="title">Tour du lịch phổ biến</h2></a>
-                <div class="tours-wrapper">
-                    <div class="tour-item ani-box-shawdow">
-                        <div class="tour-header">
-                            <a href=""><img class="ani-img-zoom" src="https://saigon-travel.com/wp-content/uploads/2019/01/ali-nuredini-1133841-unsplash-680x500.jpg" alt=""></a>
-                            <div class="tour-tag">Leo núi</div>
-                        </div>
-                        <div class="tour-content">
-                            <div class="tour-title"><h5><a href="">Leo nóc nhà Liên Xô đầy thử thách</a></h5></div>
-                            <div class="tour-rate">
-                                <span class="tour-star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                <span class="tour-review">2 reviews</span>
-                            </div>
-                            <div class="tour-info">
-                                <div class="tour-price">Giá từ 3.500.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tour-item ani-box-shawdow">
-                        <div class="tour-header">
-                            <a href=""><img class="ani-img-zoom" src="https://saigon-travel.com/wp-content/uploads/2019/01/ali-nuredini-1133841-unsplash-680x500.jpg" alt=""></a>
-                            <div class="tour-tag">Leo núi</div>
-                        </div>
-                        <div class="tour-content">
-                            <div class="tour-title"><h5><a href="">Leo nóc nhà Liên Xô đầy thử thách</a></h5></div>
-                            <div class="tour-rate">
-                                <span class="tour-star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                <span class="tour-review">2 reviews</span>
-                            </div>
-                            <div class="tour-info">
-            
-                                <div class="tour-price">Giá từ 3.500.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tour-item ani-box-shawdow">
-                        <div class="tour-header">
-                            <a href=""><img class="ani-img-zoom" src="https://saigon-travel.com/wp-content/uploads/2019/01/ali-nuredini-1133841-unsplash-680x500.jpg" alt=""></a>
-                            <div class="tour-tag">Leo núi</div>
-                        </div>
-                        <div class="tour-content">
-                            <div class="tour-title"><h5><a href="">Leo nóc nhà Liên Xô đầy thử thách</a></h5></div>
-                            <div class="tour-rate">
-                                <span class="tour-star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                <span class="tour-review">2 reviews</span>
-                            </div>
-                            <div class="tour-info">
-            
-                                <div class="tour-price">Giá từ 3.500.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tour-item ani-box-shawdow">
-                        <div class="tour-header">
-                            <a href=""><img class="ani-img-zoom" src="https://saigon-travel.com/wp-content/uploads/2019/01/ali-nuredini-1133841-unsplash-680x500.jpg" alt=""></a>
-                            <div class="tour-tag">Leo núi</div>
-                        </div>
-                        <div class="tour-content">
-                            <div class="tour-title"><h5><a href="">Leo nóc nhà Liên Xô đầy thử thách</a></h5></div>
-                            <div class="tour-rate">
-                                <span class="tour-star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                <span class="tour-review">2 reviews</span>
-                            </div>
-                            <div class="tour-info">
-            
-                                <div class="tour-price">Giá từ 3.500.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tour-item ani-box-shawdow">
-                        <div class="tour-header">
-                            <a href=""><img class="ani-img-zoom" src="https://saigon-travel.com/wp-content/uploads/2019/01/ali-nuredini-1133841-unsplash-680x500.jpg" alt=""></a>
-                            <div class="tour-tag">Leo núi</div>
-                        </div>
-                        <div class="tour-content">
-                            <div class="tour-title"><h5><a href="">Leo nóc nhà Liên Xô đầy thử thách</a></h5></div>
-                            <div class="tour-rate">
-                                <span class="tour-star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                <span class="tour-review">2 reviews</span>
-                            </div>
-                            <div class="tour-info">
-            
-                                <div class="tour-price">Giá từ 3.500.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tour-item ani-box-shawdow">
-                        <div class="tour-header">
-                            <a href=""><img class="ani-img-zoom" src="https://saigon-travel.com/wp-content/uploads/2019/01/ali-nuredini-1133841-unsplash-680x500.jpg" alt=""></a>
-                            <div class="tour-tag">Leo núi</div>
-                        </div>
-                        <div class="tour-content">
-                            <div class="tour-title"><h5><a href="">Leo nóc nhà Liên Xô đầy thử thách</a></h5></div>
-                            <div class="tour-rate">
-                                <span class="tour-star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                <span class="tour-review">2 reviews</span>
-                            </div>
-                            <div class="tour-info">
-            
-                                <div class="tour-price">Giá từ 3.500.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="btn-for-slide">
-                        <div class="btn-pre-slide">
-                            <i class="fas fa-chevron-circle-left"></i>
-                        </div>
-                        <div class="btn-next-slide">
-                            <i class="fas fa-chevron-circle-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--tours popular end-->
-
-            <!--mailchimp-->
-            <div class="mailchimp-wrapper">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="media-left">
-                            <div class="media-img">
-                                <img src="https://saigon-travel.com/wp-content/themes/traveler/v2/images/svg/ico_email_subscribe.svg" alt="Mail chimp">
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-title">Get Updates & More</h4>
-                                <p>Thoughtful thoughts to your inbox</p>
-                            </div>  
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <form class="media-form">    
-                            <input type="email" placeholder="Nhập địa chỉ email của bạn" class="form-control">
-                            <input type="submit" value="Subscribe" class="btn btn-danger">
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!--mailchimp end-->
         </div>
     </div>
+    <!--tours sugesstion end-->
+
+    <!--mailchimp-->
+    @include('frontend.layout.mailchimp')
+    <!--mailchimp end-->
+</div>
+@endsection
+@section('scriptjs')
+<script>
+    //Split page
+    $(document).ready(function () {
+
+        function ThemNavPage() {
+            var pageNav = $('.page-nav');
+            var str = '<li class="page-item page-pre"><a class="page-link">Trước</a></li>';
+
+            for (var i = 1; i <= pageCount; i++) {
+                str += '<li class="page-item page-btn"><a class="page-link">' + i + '</a></li>';
+            }
+            str += '<li class="page-item page-next"><a class="page-link">Sau</a></li>';
+            pageNav.html(str);
+        }
+
+        function ChuyenTrang() {
+            if (index == 0)
+                $('.page-pre').addClass('disabled');
+            else
+                $('.page-pre').removeClass('disabled');
+
+            if (index == parseInt(pageCount - 1))
+                $('.page-next').addClass('disabled');
+            else
+                $('.page-next').removeClass('disabled');
+
+            for (var i = 0; i < pageCount; i++) {
+                if (i == index) {
+                    tourPage[i].forEach(function (element) {
+                        element.removeClass('d-none')
+                    });
+                } else {
+                    tourPage[i].forEach(function (element) {
+                        element.addClass('d-none')
+                    });
+                }
+            }
+        }
+
+        function SplitPage() {
+            index = 0;
+            count = tourInput.length;
+            pageCount = parseInt(count / ITEM_ON_ONE_PAGE);
+            tourPage = [];
+
+            if (count % ITEM_ON_ONE_PAGE != 0)
+                pageCount++;
+
+            j = 0;
+            var arr = [];
+            for (var i = 0; i < count; i++) {
+                arr.push(tourInput.eq(i));
+                if ((i + 1) % ITEM_ON_ONE_PAGE == 0 || i == count - 1) {
+                    tourPage.push(arr);
+                    arr = [];
+                    j++;
+                }
+            }
+            tourItems.addClass('d-none');
+            tourInput.removeClass('d-none');
+
+            for (var i = 1; i < pageCount; i++) {
+                tourPage[i].forEach(function (element) {
+                    element.addClass('d-none');
+                });
+            }
+            
+            if(count == 0){
+                if(!$(".tours-result-wrapper h5").hasClass('filter-result'))
+                    $(".tours-result-wrapper").append("<h5 class='filter-result'>Không có kết quả</h5>");
+            }else{
+                $(".filter-result").remove();
+            }
+            console.log(index + " " + count + " " + pageCount);
+        }
+
+        function SetTourObiject() {
+            tourObjects = [];
+            for (var i = 0; i < count; i++) {
+                var pri = parseInt(tourInput.eq(i).find('.price').text().replace('.', ''));
+                var sco = parseInt(tourInput.eq(i).find('.tour-star').find('.yellow').length);
+                var tour = {
+                    price: pri,
+                    score: sco
+                }
+                tourObjects.push(tour);
+            }
+        }
+
+        function SetOnCLick() {
+            var pageBtn = $('.page-btn');
+            pageBtn.eq(index).addClass('active');
+            $('.page-pre').addClass('disabled');
+            if (index >= parseInt(pageCount - 1))
+                $('.page-next').addClass('disabled');
+            pageBtn.click(function () {
+                pageBtn.eq(index).removeClass('active');
+                index = $(this).index() - 1;
+                pageBtn.eq(index).addClass('active');
+                ChuyenTrang();
+            });
+
+            $('.page-pre').click(function () {
+                if ($(this).hasClass('disabled'))
+                    return;
+                pageBtn.eq(index).removeClass('active');
+                index--;
+                pageBtn.eq(index).addClass('active');
+
+                ChuyenTrang();
+            });
+
+            $('.page-next').click(function () {
+                if ($(this).hasClass('disabled'))
+                    return;
+                pageBtn.eq(index).removeClass('active');
+                index++;
+                pageBtn.eq(index).addClass('active');
+
+                ChuyenTrang();
+            });
+        }
+
+        function Loc(price1, price2, score) {
+            tourInput.removeClass("isSplit");
+            tourItems.removeClass('d-none');
+            for (var i = 0; i < tourItems.length; i++) {
+                if (price2 == null) {
+                    if (score == 0) {
+                        if (price1 <= tourObjects[i].price)
+                            tourItems.eq(i).addClass("isSplit");
+                    } else {
+                        if (price1 <= tourObjects[i].price && tourObjects[i].score == score)
+                            tourItems.eq(i).addClass("isSplit");
+                    }
+                }
+                else {
+                    if (score == 0) {
+                        if (price1 <= tourObjects[i].price && tourObjects[i].price <= price2)
+                            tourItems.eq(i).addClass("isSplit");
+                    } else {
+                        if (price1 <= tourObjects[i].price && tourObjects[i].price <= price2 && tourObjects[i].score == score)
+                            tourItems.eq(i).addClass("isSplit");
+                    }
+                }
+            }
+            tourInput = $(".isSplit");
+            SplitPage();
+            ThemNavPage();
+            SetOnCLick();
+        }
+
+        const ITEM_ON_ONE_PAGE = 8;
+        var index;
+        var tourItems = $(".tours-result-content .tour-item");
+        var count;
+        var pageCount;
+        var tourObjects = [];
+        var tourPage = [];
+        var tourInput = tourItems;
+
+        SplitPage();
+        SetTourObiject();
+        ThemNavPage();
+        SetOnCLick();
+
+        $('#btn-filter').click(function () {
+            var valPrice = $('#idPrice').val();
+            var valScore = $('#idScore').val();
+
+            if (valPrice == 0) {
+                Loc(0, null, valScore);
+            }
+            if (valPrice == 1) {
+                Loc(0, 4999, valScore);
+            }
+            if (valPrice == 2) {
+                Loc(5000, 9999, valScore);
+            }
+            if (valPrice == 3) {
+                Loc(10000, 14999, valScore);
+            }
+            if (valPrice == 4) {
+                Loc(15000, 19999, valScore);
+            }
+            if (valPrice == 5) {
+                Loc(20000, null, valScore);
+            }
+        });
+    
+        $('#idSort').change(function(){
+            var value = $('#idSort').val();
+            SoSanhGia();
+        });
+        
+    });
+</script>
 @endsection

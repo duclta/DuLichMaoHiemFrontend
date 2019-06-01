@@ -19,7 +19,7 @@ class TicketController extends Controller
 
     public function getEditTicket($id)
     {
-        $data['ticketlist'] = Ticket::find($id);
+        $data['ticket'] = Ticket::find($id);
         return view('admin.edit_ticket',$data);
     }
 

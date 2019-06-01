@@ -26,9 +26,6 @@
     padding: 10px 0;
 }
 
-.single-tour-star {
-    color: #ffd904;
-}
 
 .single-tour-meta-right {
     height: 100%;
@@ -375,8 +372,22 @@
 }
 
 .review-sumary .item {
-    padding: 5px;
+    display: flex;
+    padding: 10px;
+    align-items: center;
 }
+.review-sumary .item .label{
+    width: 20%;
+}
+.review-sumary .item .progress{
+    width: 75%;
+}
+
+.review-sumary .item .count-reviews{
+    width: 5%;
+    text-align: right;
+}
+
 
 .comment-item {
     background-color: #2e2e2e;

@@ -50,8 +50,8 @@ class TourController extends Controller
         $tour->tour_slug = str_slug($req->name);
         $tour->tour_cate = $req->cate;
         $tour->tour_quantity = $req->quantity;
-        $tour->tour_departure_date = $req->departure_date;
-        $tour->tour_return_date = $req->return_date;
+        $tour->tour_number_day = $req->number_day;
+        $tour->tour_number_night = $req->number_night;
         $tour->tour_introduction = $req->introduction;
         $tour->tour_price = $req->price;
         $tour->tour_poster = $filePosterName;

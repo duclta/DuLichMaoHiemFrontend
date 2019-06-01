@@ -1,0 +1,18 @@
+#complete{
+	margin-top: 15px;
+	border: 1px solid #cccccc;
+	padding: 10px 10px;
+}
+#complete p{
+	color: #cccccc;
+	text-align: justify;
+}
+
+p>a{
+	color: #ffffff;
+	font-weight: bold;
+}
+.return a:hover{
+	text-decoration: none;
+	color: #0ecff1;
+}

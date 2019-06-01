@@ -14,6 +14,10 @@
 Route::get('/','FrontendController@getHome');
 
 Route::get('/detail/{id}/{slug}.html', 'FrontendController@getDetail');
+Route::post('/comment/{id}', 'FrontendController@postComment');
+Route::post('/checkout/{id}', 'FrontendController@postCheckOut');
+Route::get('/search', 'FrontendController@getSearch');
+Route::get('/complete', 'FrontendController@getComplete');
 
 Route::group(['namespace' => 'Admin'], function () {
     Route::group(['prefix' => 'login','middleware' => 'CheckLogedIn'], function () {
@@ -56,8 +60,8 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::group(['prefix' => 'ticket'], function () {
             Route::get('/', 'TicketController@getTicket');
 
-            Route::get('/edit/{id}','TourController@getEditTicket');
-            Route::post('/edit/{id}','TourController@postEditTicket');
+            Route::get('/edit/{id}','TicketController@getEditTicket');
+            Route::post('/edit/{id}','TicketController@postEditTicket');
 
             Route::get('/delete/{id}', 'TicketController@getDeleteTicket');
         });

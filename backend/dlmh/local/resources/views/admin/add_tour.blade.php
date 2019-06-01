@@ -28,7 +28,7 @@
                             </div>
                             <fieldset class="form-group">
                                 <a href="javascript:void(0)" onclick="$('#pro_image').click()">Chọn ảnh</a>
-                                <input type="file" id="pro_image" name="pictour[]" style="display: none;"
+                                <input type="file" id="pro_image" name="pictour[]"
                                     class="form-control" accept="image/*" multiple="multiple">
                             </fieldset>
                             <div class="preview-images-zone">
@@ -38,13 +38,13 @@
                             <div class="form-group">
                                 <fieldset>
                                     <label class="control-label" for="inputSize">Số lượng</label>
-                                    <input required class="form-control" name="quantity" id="inputSize" type="number" min="1">
+                                    <input required class="form-control" name="quantity" id="inputSize" type="number" value="1" min="1">
                                 </fieldset>
                             </div>
                             <div class="form-group">
                                 <fieldset>
                                     <label class="control-label" for="inputPrice">Giá</label>
-                                    <input required class="form-control" name="price" id="inputPrice" type="number" min ="1">
+                                    <input required class="form-control" name="price" id="inputPrice" type="number" value="500000" min ="1">
                                 </fieldset>
                             </div>
                             <div class="form-group">
@@ -57,14 +57,14 @@
                             </div>
                             <div class="form-group">
                                 <fieldset>
-                                    <label class="control-label" for="inputStartDate">Ngày bắt đầu</label>
-                                    <input required name="departure_date" class="form-control datepicker" id="inputStartDate" type="date">
+                                    <label class="control-label" for="inputSize">Số lượng ngày</label>
+                                    <input required class="form-control" name="number_day" id="inputSize" value="1" type="number" min="1">
                                 </fieldset>
                             </div>
                             <div class="form-group">
                                 <fieldset>
-                                    <label class="control-label" for="inputEndDate">Ngày kết thúc</label>
-                                    <input required name="return_date" class="form-control datepicker" id="inputEndDate" type="date">
+                                    <label class="control-label" for="inputSize">Số lượng đêm</label>
+                                    <input required class="form-control" name="number_night" id="inputSize" type="number" value="1" min="1">
                                 </fieldset>
                             </div>
                         </div>
@@ -182,7 +182,7 @@
     function xoaLichTrinh() {
         var btn = $(".btn-xoa-lich-trinh")
         btn.eq(btn.length -1).click(function(){
-            $(this).parent().parent().parent().parent().parent().remove();
+            $(this).parent().parent().remove();
         });
     }
 
@@ -200,49 +200,47 @@
         });
     });
 
-    var num = 4;
-    function readImage() {
-        if (window.File && window.FileList && window.FileReader) {
-            var files = event.target.files; //FileList object
-            var output = $(".preview-images-zone");
+    $(document).ready(xoaLichTrinh())
 
-            for (let i = 0; i < files.length; i++) {
-                var file = files[i];
-                if (!file.type.match('image')) continue;
+        //upload img
+        $(document).ready(function () {
+            document.getElementById('pro-image').addEventListener('change', readImage, false);
+        });
 
-                var picReader = new FileReader();
+        var num = 4;
+        function readImage() {
+            if (window.File && window.FileList && window.FileReader) {
+                var files = event.target.files; //FileList object
+                var output = $(".preview-images-zone");
+                var imgs = $('.preview-image');
+                imgs.remove();
+                for (let i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    if (!file.type.match('image')) continue;
 
-                picReader.addEventListener('load', function (event) {
-                    var picFile = event.target;
-                    var html = '<div class="preview-image preview-show-' + num + '">' +
-                        '<div class="image-cancel" data-no="' + num + '">x</div>' +
-                        '<div class="image-zone"><img id="pro-img-' + num + '" src="' + picFile.result + '"></div>' +
-                        '</div>';
+                    var picReader = new FileReader();
 
-                    output.append(html);
-                    num = num + 1;
-                });
-
-                picReader.readAsDataURL(file);
+                    picReader.addEventListener('load', function (event) {
+                        var picFile = event.target;
+                        var html = '<div class="preview-image preview-show-' + num + '">'+
+                            '<div class="image-zone"><img id="pro-img-' + num + '" src="' + picFile.result + '"></div></div>';
+                        output.append(html);
+                        num = num + 1;
+                    });
+                    picReader.readAsDataURL(file);
+                }
+                
+            } else {
+                console.log('Browser not support');
             }
-            // let temp = $("#pro_image").files;
-            // console.log(temp);
-            // var names = [];
-            // for (var i = 0; i < $("#pro_image").get(0).files.length; ++i) {
-            //     names.push($("#pro_image").get(0).files[i].name);
-            // }
-            // console.log(names);
-        } else {
-            console.log('Browser not support');
         }
-    }
 
-    $(document).ready(function () {
+        $(document).ready(function () {
             var today = new Date();
             var dd = today.getDate();
             var mm = today.getMonth() + 1;
             var yyyy = today.getFullYear();
-            
+
             if (dd < 10) {
                 dd = '0' + dd
             }
@@ -253,6 +251,6 @@
             today = yyyy + '-' + mm + '-' + dd;
             document.getElementById("inputStartDate").value = today;
             document.getElementById("inputEndDate").value = today;
-    });
+        });
 </script>
 @endsection

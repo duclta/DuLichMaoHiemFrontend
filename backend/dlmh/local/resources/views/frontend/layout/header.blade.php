@@ -4,7 +4,7 @@
         <div class="header-top">
             <div class="header-menu">
                 <nav class="navbar navbar-expand-md container">
-                    <a class="navbar-brand logo-header" href="home.html"><img src="img/logo.png" alt="logo"
+                    <a class="navbar-brand logo-header" href="{{asset('/')}}"><img src="img/logo.png" alt="logo"
                             title="Company name"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false"

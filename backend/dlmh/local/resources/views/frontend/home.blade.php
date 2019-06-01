@@ -32,7 +32,7 @@
     </div>
     <div class="search-form">
         <h2 class="search-form-title">Mạo hiểm cùng chúng tôi</h2>
-        <form action="#" method="GET" class="form-search">
+        <form action="{{asset('search/')}}" role="search" method="GET" class="form-search">
             <div class="row">
                 <div class="search-item search-option-1 col-lg-3">
                     <div class="content-show content-show-big">
@@ -52,12 +52,11 @@
                         <div class="icon"><i class="fas fa-hiking"></i></div>
                         <div class="content">
                             <label>Thể loại</label>
-                            <select id="theLoai" class="select-menu">
-                                <option>Leo núi</option>
-                                <option>Lặn</option>
-                                <option>Lướt sóng</option>
-                                <option>Nhảy dù</option>
-                                <option>Cưỡi voi</option>
+                            <select name="cate" id="theLoai" class="select-menu">
+                                <option value="-1">Tất cả</option>
+                                @foreach ($catelist as $cate)
+                                    <option value="{{$cate->cate_id}}">{{$cate->cate_name}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -67,11 +66,12 @@
                         <div class="icon"><i class="fas fa-clock"></i></div>
                         <div class="content">
                             <label>Thời lượng</label>
-                            <select id="thoiLuong" class="select-menu">
-                                <option>1 - 2 ngày</option>
-                                <option>3 - 5 ngày</option>
-                                <option>5 - 7 ngày</option>
-                                <option>Trên 1 tuần</option>
+                            <select name="time" id="thoiLuong" class="select-menu">
+                                    <option value="-1">Tất cả</option>
+                                    <option value="1-2">1 - 2 ngày</option>
+                                    <option value="3-5">3 - 5 ngày</option>
+                                    <option value="5-7">5 - 7 ngày</option>
+                                    <option value=">7">Trên 1 tuần</option>
                             </select>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                     @foreach ($cates_featured as $item)
                         <div class="col-lg-4 col-md-6">
                             <div class="activity-item ani-box-shawdow">
-                                <a href="#">
+                                <a href="{{asset('/search?cate='.$item->cate_id.'&time=-1')}}">
                                     <div class="activity-img">
                                         <img class="ani-img-zoom" src="{{asset('local/storage/app/images/category/poster/'.$item->cate_poster)}}" alt="Lặn">
                                     </div>
@@ -167,7 +167,8 @@
                 <div class="tour-item">
                     <div class="tour-item-wrapper ani-box-shawdow">
                         <div class="tour-header">
-                            <a href="{{asset('/detail/'.$item->tour_id.'/'.$item->tour_slug.'.html')}}"><img width="273px;" height="217px;" class="ani-img-zoom" src="{{asset('local/storage/app/images/tour/poster/'.$item->tour_poster)}}" alt="ảnh tour"></a>
+                            <a href="{{asset('/detail/'.$item->tour_id.'/'.$item->tour_slug.'.html')}}">
+                                <img width="273px;" height="217px;" class="ani-img-zoom" src="{{asset('local/storage/app/images/tour/poster/'.$item->tour_poster)}}" alt="ảnh tour"></a>
                             <div class="tour-tag">{{$item->cate_name}}</div>
                         </div>
                         <div class="tour-content">
@@ -175,11 +176,13 @@
                                 <h5><a href="{{asset('/detail/'.$item->tour_id.'/'.$item->tour_slug.'.html')}}">{{$item->tour_name}}</a></h5>
                             </div>
                             <div class="tour-rate">
+                                <span class="tour-star">
                                 @if ($item->cmt_avg_score !== NULL)
                                 @for ($i = 0; $i < $item->cmt_avg_score; $i++)
                                     <i class="fas fa-star yellow"></i>
                                 @endfor
                                 @endif
+                                </span>
                                 <span class="tour-review">{{$item->cmt_count}} reviews</span>
                             </div>
                             <div class="tour-info">
@@ -217,11 +220,13 @@
                                     <h5><a href="{{asset('/detail/'.$item->tour_id.'/'.$item->tour_slug.'.html')}}">{{$item->tour_name}}</a></h5>
                                 </div>
                                 <div class="tour-rate">
+                                    <span class="tour-star">
                                     @if ($item->cmt_avg_score !== NULL)
                                     @for ($i = 0; $i < $item->cmt_avg_score; $i++)
                                         <i class="fas fa-star yellow"></i>
                                     @endfor
                                     @endif
+                                    </span>
                                     <span class="tour-review">{{$item->cmt_count}} reviews</span>
                                 </div>
                                 <div class="tour-info">

@@ -52,8 +52,8 @@
                                     </th>
                                     <td class="p-1 text-center">
                                         <div class="btn-group">
-                                            <a class="btn btn-primary" href="{{asset('admin/ticket/edit'.$item->ticket_id)}}"><i class="fa fa-lg fa-edit"></i>Sửa</a>
-                                            <a class="btn btn-danger" href="{{asset('admin/ticket/delete'.$item->ticket_id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><i class="fa fa-lg fa-trash"></i>Xóa</a>
+                                            <a class="btn btn-primary" href="{{asset('admin/ticket/edit/'.$item->ticket_id)}}"><i class="fa fa-lg fa-edit"></i>Sửa</a>
+                                            <a class="btn btn-danger" href="{{asset('admin/ticket/delete/'.$item->ticket_id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><i class="fa fa-lg fa-trash"></i>Xóa</a>
                                         </div>
                                     </td>
                                     </tr>

@@ -22,9 +22,9 @@
                 <th>Tên tour</th>
                 <th>Thể loại</th>
                 <th>Số lượng</th>
-                <th>Còn trống</th>
-                <th>Ngày bắt đầu</th>
-                <th>Ngày kết thúc</th>
+                <th>Đã đặt</th>
+                <th>Số lượng ngày</th>
+                <th>Số lượng đêm</th>
                 <th>Mới</th>
                 <th>Nổi Bật</th>
                 <th>Công cụ</th>
@@ -36,10 +36,10 @@
                   <td>{{$item->tour_id}}</td>
                   <td>{{$item->tour_name}}</td>
                   <td>{{$item->cate_name}}</td>
-                  <td>{{$item->tour_number}}</td>
-                  <td>{{$item->tour_number_of_blank}}</td>
-                  <td>{{$item->tour_departure_date}}</td>
-                  <td>{{$item->tour_return_date}}</td>
+                  <td>{{$item->tour_quantity}}</td>
+                  <td>{{$item->tour_quantity_purchased}}</td>
+                  <td>{{$item->tour_number_day}}</td>
+                  <td>{{$item->tour_number_night}}</td>
                   <td>@if ($item->tour_new == true)
                         <i class="fa fa-check fa-lg">
                       @endif
